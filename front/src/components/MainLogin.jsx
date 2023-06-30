@@ -7,21 +7,24 @@ const MainLogin = () => {
   const [nickEmail, setNickEmail] = useState("");
   const [pass, setPass] = useState("");
   const navigate =useNavigate();
-
-  const [iniciar, setIniciar] = useState(0);
+  const [data,setData]= useState([]);
   
+ 
+  
+  useEffect(()=>{}
+  , [])
 
-  const login = (e) => {
-    e.preventDefault();
+
+  const login = () => {
+   
     axios
       .post("http://localhost:3000/login", {
         nickEmail: nickEmail,
         pass:pass
       })
       .then((res) =>{
-        const data= res.data
-        console.log(data)
-        if ((data.nick === nickEmail || data.email=== nickEmail) && data.pass=== pass){
+       const datos= res.data
+        if ((datos.nick === nickEmail || datos.email=== nickEmail) && datos.pass=== pass){
           navigate("/home")
         } else{
           alert("usuario incorrecto")
@@ -29,6 +32,7 @@ const MainLogin = () => {
       })
       .catch((err)=> console.log(err));
     };
+    
 
   return (
     <>
