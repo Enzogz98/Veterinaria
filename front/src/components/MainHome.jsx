@@ -1,24 +1,27 @@
-import React, { useEffect } from 'react'
-import { useNavigate } from 'react-router-dom'
-
+import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const MainHome = () => {
-  const navigate=useNavigate()
+  const navigate = useNavigate();
+  const [storeData, setStoreData] = useState([]);
+  useEffect(() => {
+    localStorage.getItem("login")
+      ? localStorage.getItem("userData")
+        ? setStoreData(JSON.parse(localStorage.getItem("userData")))
+        : setStoreData([])
+      : logOut()
+  }, []);
 
-  useEffect(()=>{
-    localStorage.getItem("login") ? console.log('login'): navigate("/")
-  }, [])
-  const storeData= JSON.parse(localStorage.getItem("userData"))
-  console.log(storeData)
-  const logOut = ()=>{
-    localStorage.removeItem('userData')
-    localStorage.removeItem('login')
-    navigate("/")
-  }
-  
+  console.log(storeData);
+  const logOut = () => {
+    localStorage.removeItem("userData");
+    localStorage.removeItem("login");
+    navigate("/");
+  };
+
   return (
     <>
-    <ul>
+      <ul>
         {storeData.map((user, index) => (
           <li key={index}>
             <p>Nick/Email: {user.nick}</p>
@@ -28,7 +31,7 @@ const MainHome = () => {
       </ul>
       <button onClick={logOut}> Cerrar sesion</button>
     </>
-  )
-}
+  );
+};
 
-export default MainHome
+export default MainHome;
