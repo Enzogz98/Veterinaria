@@ -74,18 +74,28 @@ const MainHome = () => {
       {storeData.map((user) =>
         
         <ul key={user.id}>
+          <li>Id: {user.id}</li>
           <li>Estado {user.estado } </li>
           <li>Rol {user.id_rol}</li>
           <li>Nick:{user.nick}</li>
+          <li>Email:{user.email}</li>
           <li>Pass:{user.pass}</li>
+          <li>Apellido y Nombre: {user.apellido},{user.nombre}</li>
           { <li>
             imagen perfil:{" "}
             {(datoPerfil)? (
              <div>
                <img className="imgPerfil" src={datoPerfil[0].img} alt="" />
                <textarea name="" id="" cols="30" rows="10" defaultValue={datoPerfil[0].notas}></textarea>
+               <br />
+               <ul>
+                <li>Estilo Background: {datoPerfil[0].background}</li>
+                <li>Estilo color: {datoPerfil[0].colorHeader}</li>
+                <li>ligthDark: {datoPerfil[0].ligthDark}</li>
+                
+               </ul>
              </div>
-
+            
               
             ) : (
               <span>No hay imagen de perfil disponible</span>
