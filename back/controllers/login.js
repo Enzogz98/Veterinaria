@@ -16,8 +16,8 @@ const login =async (req,res) =>{
     try{
         const{nickEmail,pass}=req.body
         console.log('solicitud frontend-->',req.body)
-        const query= 'SELECT * FROM usuario where ((nick or email) =?) and pass=?;'
-        const values=[nickEmail, pass]
+        const query= 'SELECT * FROM usuario where ((nick =?) or (email=?)) and  pass= ? '
+        const values=[nickEmail,nickEmail, pass]
         const rows= await queryDatabase(query,values)
         res.json(rows)
     }catch (error) {

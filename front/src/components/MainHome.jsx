@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { TfiRuler } from "react-icons/tfi";
 import { useNavigate } from "react-router-dom";
+import "../css/MainHome.css"
 
 const MainHome = () => {
   const navigate = useNavigate();
@@ -58,8 +59,8 @@ const MainHome = () => {
 
   
 
-  // console.log(storeData);
-  // console.log(datoPerfil);
+  console.log(storeData);
+  console.log(datoPerfil);
 
  
   const logOut = () => {
@@ -80,7 +81,12 @@ const MainHome = () => {
           { <li>
             imagen perfil:{" "}
             {(datoPerfil)? (
-              <img src={datoPerfil[0].img} alt="" />
+             <div>
+               <img className="imgPerfil" src={datoPerfil[0].img} alt="" />
+               <textarea name="" id="" cols="30" rows="10" defaultValue={datoPerfil[0].notas}></textarea>
+             </div>
+
+              
             ) : (
               <span>No hay imagen de perfil disponible</span>
             )}
