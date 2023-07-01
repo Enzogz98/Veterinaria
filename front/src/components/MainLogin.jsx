@@ -12,26 +12,22 @@ const MainLogin = () => {
   const navigate = useNavigate();
   const [data, setData] = useState();
 
-  // useEffect(()=>{
-  //   if(data){
-  //     data.length>0 ? navigate("/home") : alert("Usuario o contraseña incorrectos")
-  //   }
-  // }
-  // , [data])
+  
 
   useEffect(() => {
     if (data) {
       if (data.length > 0) {
         localStorage.setItem("userData", JSON.stringify(data));
         data.map((dato) => {
-          if (dato.estado == 1) {
+          if (dato.estado == true) {
             localStorage.setItem("login", true);
+            navigate("/home");
+          }else{
+            alert("usuario dado de baja ! :C")
           }
         });
-
-        navigate("/home");
       } else {
-        alert("usuario incorrecto");
+        alert("usuario o pass erroneo/inexistente");
       }
     }
   }, [data]);
@@ -51,25 +47,6 @@ const MainLogin = () => {
       console.error("Error al realizar la peticion: ", error);
     }
   };
-
-  // const login = () => {
-
-  //   axios
-  //     .post("http://localhost:3000/login", {
-  //       nickEmail: nickEmail,
-  //       pass:pass
-  //     })
-  //     .then((res) =>{
-  //      const datos= res.data
-  //       if ((datos.nick === nickEmail || datos.email=== nickEmail) && datos.pass=== pass){
-  //         navigate("/home")
-  //       } else{
-  //         alert("usuario incorrecto")
-  //       }
-  //     })
-  //     .catch((err)=> console.log(err));
-  //   };
-
   return (
     <>
       <div className="body-login">

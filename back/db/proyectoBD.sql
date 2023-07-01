@@ -22,8 +22,34 @@ permisos int
 
 insert into usuario (nombre,apellido,email,nick,pass,id_rol,estado)
  values ("Diego","Flores","floresdiego2015@gmail.com","chew","123456",1,true);
+
+ insert into user_rol(nombreRol,id_user,permisos)
+ values ('Administrador',1,1);
+
  
- select * from usuario
- where ((nick or email) ="chew") and pass="123456";
-
-
+ create table perfil(
+	id int primary key auto_increment,
+    id_user int, 
+    img varchar(2000),
+    notas varchar(500),
+    colorHeader int,
+    background int,
+    ligthDark bool
+    
+ );
+ 
+ insert into perfil(id_user,img,notas,colorHeader,background,ligthDark)
+ values (1,"https://i.pinimg.com/originals/6a/5f/7f/6a5f7f9636c3412617756297fa60b78c.jpg",
+			"Escribe aqui tu nota ! :)",1,1,false);
+ 
+ 
+ /* NOTAS Diego
+	update usuario 
+    set estado=true
+    where id=1;
+	select img,notas,colorHeader,background,ligthDark from perfil
+    where id_user=1;
+	select * from user_rol;
+	select * from usuario
+		where ((nick or email) ="chew") and pass="123456";
+ */
