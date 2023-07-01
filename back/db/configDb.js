@@ -5,5 +5,7 @@ const connection = mysql.createConnection({
     password: "root",
     database: "veterinariaBD",
   });
+
+  
   module.exports ={connection}
 

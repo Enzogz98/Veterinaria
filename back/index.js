@@ -4,7 +4,8 @@ const {connection}= require('./db/configDb')
 const cors = require("cors");
 const bodyParser= require('body-parser')
 const morgan = require('morgan');
-const login=require('./routes/login')
+const login=require('./routes/login');
+const perfil = require("./routes/perfil");
 
 
 
@@ -27,4 +28,5 @@ app.get("/", (req, res) => {
   res.json("todo ok");
 });
 app.use('/', login)
+app.use('/', perfil)
 // NO OLVIDES HACER EL app.use('/',perfil)

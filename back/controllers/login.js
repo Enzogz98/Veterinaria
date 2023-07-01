@@ -12,8 +12,6 @@ const queryDatabase=(query,values)=>{
         }) 
     })
 }
-
-
 const login =async (req,res) =>{
     try{
         const{nickEmail,pass}=req.body
@@ -28,18 +26,18 @@ const login =async (req,res) =>{
     }
 }
 
-const perfil = async (req,res)=>{
-    try{
-        const {id_u}=req.body
-        console.log('solicitud frontend -->',req.body)
-        const query='select img,notas,colorHeader,background,ligthDark from perfil where id_user=?';
-        const values=[id_u]
-        const rows= await queryDatabase(query,values)
-        res.json(rows)
-    }catch (error) {
-        console.error("Error al realizar la consulta")
-        res.status(500).json({error:'Error al realizar la consulta'})
-    }
-}
-module.exports= {login,perfil}
+// const perfil = async (req,res)=>{
+//     try{
+//         const {id_u}=req.body
+//         console.log('solicitud frontend -->',req.body)
+//         const query='select img,notas,colorHeader,background,ligthDark from perfil where id_user=?';
+//         const values=[id_u]
+//         const rows= await queryDatabase(query,values)
+//         res.json(rows)
+//     }catch (error) {
+//         console.error("Error al realizar la consulta")
+//         res.status(500).json({error:'Error al realizar la consulta'})
+//     }
+// }
+module.exports= {login}
 

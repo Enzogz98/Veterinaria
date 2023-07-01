@@ -6,15 +6,21 @@ import { useNavigate } from "react-router-dom";
 const MainHome = () => {
   const navigate = useNavigate();
   const [storeData, setStoreData] = useState([]);
-  const [id_u, setId_u] = useState(1);
+  const [id_u, setId_u] = useState(0);
   const [datoPerfil,setPerfil]=useState();
   
-  useEffect(async () => {
+  useEffect(()=> {
+    const fetchData = async () => {
     if(localStorage.getItem("login")){
       if(localStorage.getItem("userData")){
-        setStoreData(JSON.parse(localStorage.getItem("userData")));
+        const userData= JSON.parse(localStorage.getItem("userData"))
+        setStoreData(userData);
+        if(userData.length>0){
+         
+          setId_u(userData[0].id)
+        }
         
-        perfil()
+        
         // storeData.map(dato=>(console.log(dato.id)))
         //console.log(id_u)
       }else{
@@ -23,18 +29,21 @@ const MainHome = () => {
     } else{
       logOut();
     }
+  }
+
+  
+  fetchData();
         
   }, []);
-  
-
-  const perfil = async () => {
+ 
+  useEffect(()=>
+  {
+    const perfil = async () => {
     try {
-      const response = await axios.post("http://localhost:3000/perfil", {
-        id_u
-      });
+      const response = await axios.post("http://localhost:3000/perfil",{id_u});
       if (response.status === 200) {
         setPerfil(response.data);
-        console.log(datoPerfil)
+        
       } else {
         console.error("Error en la respuesta");
       }
@@ -42,11 +51,17 @@ const MainHome = () => {
       console.error("Error al realizar la peticion: ", error);
     }
   };
+  if(id_u!==0){
+    perfil()
+  }
+  }, [id_u])
 
-  console.log(storeData);
-  console.log(datoPerfil);
+  
 
+  // console.log(storeData);
+  // console.log(datoPerfil);
 
+ 
   const logOut = () => {
     localStorage.removeItem("userData");
     localStorage.removeItem("login");
@@ -62,7 +77,14 @@ const MainHome = () => {
           <li>Rol {user.id_rol}</li>
           <li>Nick:{user.nick}</li>
           <li>Pass:{user.pass}</li>
-          <li>imagen perfil: <img src={datoPerfil[0].img} alt="" /> </li>
+          { <li>
+            imagen perfil:{" "}
+            {(datoPerfil)? (
+              <img src={datoPerfil[0].img} alt="" />
+            ) : (
+              <span>No hay imagen de perfil disponible</span>
+            )}
+          </li>}
         </ul>
         
       

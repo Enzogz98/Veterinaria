@@ -36,7 +36,7 @@ const MainLogin = () => {
     try {
       const response = await axios.post("http://localhost:3000/login", {
         nickEmail,
-        pass,
+        pass
       });
       if (response.status === 200) {
         setData(response.data);
