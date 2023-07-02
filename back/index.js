@@ -6,6 +6,7 @@ const bodyParser= require('body-parser')
 const morgan = require('morgan');
 const login=require('./routes/login');
 const perfil = require("./routes/perfil");
+const usuario=require("./routes/usuario");
 
 
 
@@ -29,4 +30,5 @@ app.get("/", (req, res) => {
 });
 app.use('/', login)
 app.use('/', perfil)
+app.use('/', usuario)
 // NO OLVIDES HACER EL app.use('/',perfil)
