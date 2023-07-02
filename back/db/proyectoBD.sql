@@ -103,11 +103,11 @@ insert into perfil(id_user,img,notas,colorHeader,background,ligthDark)
      set pass="12345"
      where id=2;
  */
- 
- 
- 
- 
- 
- 
- 
+
+
+
+
+
+
+
  

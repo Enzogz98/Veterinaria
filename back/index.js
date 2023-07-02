@@ -6,8 +6,12 @@ const bodyParser= require('body-parser')
 const morgan = require('morgan');
 const login=require('./routes/login');
 const perfil = require("./routes/perfil");
+ 
 const nuevaTarea=require("./routes/nuevaTarea");
 const cargarTareas=require("./routes/cargarTareas");
+
+const usuario=require("./routes/usuario");
+
 
 
 
@@ -35,3 +39,5 @@ app.use('/', login)
 app.use('/', perfil)
 app.use('/', nuevaTarea)
 app.use('/', cargarTareas)
+app.use('/', usuario)
+// NO OLVIDES HACER EL app.use('/',perfil)
