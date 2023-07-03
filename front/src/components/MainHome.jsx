@@ -60,7 +60,7 @@ const MainHome = () => {
     const cargarTabla = async () => {
       try {
         const response = await axios.post(
-          "http://localhost:3000/cargarTareas",
+          "http://localhost:3000/tareas/cargarTarea",
           { id_u }
         );
         if (response.status === 200) {
@@ -85,7 +85,7 @@ const MainHome = () => {
   useEffect(() => {
     const postTabla = async () => {
       try {
-        const response = await axios.post("http://localhost:3000/nuevaTarea", {
+        const response = await axios.post("http://localhost:3000/tareas", {
           id_u,
           tarea,
           descripcion,
@@ -108,7 +108,7 @@ const MainHome = () => {
     const putTabla = async () =>{
       try {
         //editar el put
-        const response = await axios.put("http://localhost:3000/editarTareas",{
+        const response = await axios.put("http://localhost:3000/tareas",{
           idTarea,
           tarea,
           descripcion,
@@ -130,7 +130,7 @@ const MainHome = () => {
 
     const deleteTabla = async () =>{
       try {
-        const response = await axios.post("http://localhost:3000/deleteTareas",{idTarea}
+        const response = await axios.post("http://localhost:3000/tareas/delete",{idTarea}
         );
         
         if(response.status === 200){

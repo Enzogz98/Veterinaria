@@ -6,11 +6,11 @@ const bodyParser= require('body-parser')
 const morgan = require('morgan');
 const login=require('./routes/login');
 const perfil = require("./routes/perfil");
- 
-const nuevaTarea=require("./routes/nuevaTarea");
-const cargarTareas=require("./routes/cargarTareas");
-const editarTareas=require('./routes/editarTareas');
-const deleteTareas=require('./routes/deleteTareas')
+const tareas=require("./routes/tareas")
+// const nuevaTarea=require("./routes/nuevaTarea");
+// const cargarTareas=require("./routes/cargarTareas");
+// const editarTareas=require('./routes/editarTareas');
+// const deleteTareas=require('./routes/deleteTareas')
 const usuario=require("./routes/usuario");
 
 
@@ -38,9 +38,10 @@ app.get('/', (req,res) => {
 
 app.use('/', login)
 app.use('/', perfil)
-app.use('/', nuevaTarea)
-app.use('/', cargarTareas)
+// app.use('/', nuevaTarea)
+app.use('/', tareas)
+// app.use('/', cargarTareas)
 app.use('/', usuario)
-app.use('/', editarTareas)
-app.use('/', deleteTareas)
+// app.use('/', editarTareas)
+// app.use('/', deleteTareas)
 // NO OLVIDES HACER EL app.use('/',perfil)
