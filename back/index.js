@@ -9,7 +9,8 @@ const perfil = require("./routes/perfil");
  
 const nuevaTarea=require("./routes/nuevaTarea");
 const cargarTareas=require("./routes/cargarTareas");
-
+const editarTareas=require('./routes/editarTareas');
+const deleteTareas=require('./routes/deleteTareas')
 const usuario=require("./routes/usuario");
 
 
@@ -40,4 +41,6 @@ app.use('/', perfil)
 app.use('/', nuevaTarea)
 app.use('/', cargarTareas)
 app.use('/', usuario)
+app.use('/', editarTareas)
+app.use('/', deleteTareas)
 // NO OLVIDES HACER EL app.use('/',perfil)
