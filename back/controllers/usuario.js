@@ -28,7 +28,7 @@ const login =async (req,res) =>{
 
 
 const mostrar = (req,res) =>{
-    connection.query("CALL pa_verUsuario()", (error,results)=>{
+    connection.query("SELECT * FROM usuario", (error,results)=>{
         if(error) throw(error)
         res.json(results);
     })

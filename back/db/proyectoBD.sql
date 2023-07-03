@@ -12,6 +12,11 @@ pass varchar(50),
 id_rol int ,
 estado boolean
 );
+alter table usuario
+drop column id_rol;
+alter table usuario
+add column nombreRol varchar(50),
+add column permisos int;
 
 create table user_rol (
 id int primary key auto_increment,
@@ -19,6 +24,7 @@ nombreRol varchar(30),
 id_user int,
 permisos int
 );
+drop table user_rol;
  create table perfil(
 	id int primary key auto_increment,
     id_user int, 
@@ -39,6 +45,13 @@ insert into usuario (nombre,apellido,email,nick,pass,id_rol,estado)
  values ('Administrador',1,1);
  insert into user_rol(nombreRol,id_user,permisos)
  values ('Administrador',2,1);
+ 
+ update usuario
+ set nombreRol='Administrador', permisos=1
+ where id=1;
+  update usuario
+ set nombreRol='Administrador', permisos=1
+ where id=2;
  
  insert into perfil(id_user,img,notas,colorHeader,background,ligthDark)
  values (1,"https://i.pinimg.com/originals/6a/5f/7f/6a5f7f9636c3412617756297fa60b78c.jpg",
@@ -72,7 +85,14 @@ insert into perfil(id_user,img,notas,colorHeader,background,ligthDark)
  
 
     
+     DELIMITER //
+     CREATE PROCEDURE pa_verUsuario()
+     BEGIN
+     SELECT * FROM usuario;
+     END //
+     DELIMITER  ;
      
+     select * from usuario;
      
      
   -- select * from usuario where ((nick ="Enzo202") or (email="floresdiego2015@gmail.com")) and  pass= '123456'  ;      
