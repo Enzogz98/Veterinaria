@@ -4,7 +4,7 @@ const {connection}= require('./db/configDb')
 const cors = require("cors");
 const bodyParser= require('body-parser')
 const morgan = require('morgan');
-const login=require('./routes/login');
+// const login=require('./routes/login');
 const perfil = require("./routes/perfil");
 const tareas=require("./routes/tareas")
 // const nuevaTarea=require("./routes/nuevaTarea");
@@ -36,7 +36,7 @@ app.get('/', (req,res) => {
 });
 
 
-app.use('/', login)
+// app.use('/', login)
 app.use('/', perfil)
 // app.use('/', nuevaTarea)
 app.use('/', tareas)
