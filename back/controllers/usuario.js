@@ -16,8 +16,8 @@ const login =async (req,res) =>{
     try{
         const{nickEmail,pass}=req.body
         console.log('solicitud frontend-->',req.body)
-        const query= 'SELECT * FROM usuario where ((nick or email) =?) and pass=?;'
-        const values=[nickEmail, pass]
+        const query= 'SELECT * FROM usuario where ((nick =?) or (email=?)) and  pass= ? '
+        const values=[nickEmail,nickEmail, pass]
         const rows= await queryDatabase(query,values)
         res.json(rows)
     }catch (error) {
@@ -26,18 +26,12 @@ const login =async (req,res) =>{
     }
 }
 
-// const perfil = async (req,res)=>{
-//     try{
-//         const {id_u}=req.body
-//         console.log('solicitud frontend -->',req.body)
-//         const query='select img,notas,colorHeader,background,ligthDark from perfil where id_user=?';
-//         const values=[id_u]
-//         const rows= await queryDatabase(query,values)
-//         res.json(rows)
-//     }catch (error) {
-//         console.error("Error al realizar la consulta")
-//         res.status(500).json({error:'Error al realizar la consulta'})
-//     }
-// }
-module.exports= {login}
 
+const mostrar = (req,res) =>{
+    connection.query("SELECT * FROM usuario", (error,results)=>{
+        if(error) throw(error)
+        res.json(results);
+    })
+
+} 
+module.exports={mostrar, login}
