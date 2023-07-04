@@ -9,22 +9,15 @@ apellido varchar(50),
 email varchar(50),
 nick  varchar(50) null,
 pass varchar(50),
-id_rol int ,
 estado boolean
+
 );
-alter table usuario
-drop column id_rol;
+
 alter table usuario
 add column nombreRol varchar(50),
 add column permisos int;
 
-create table user_rol (
-id int primary key auto_increment,
-nombreRol varchar(30),
-id_user int,
-permisos int
-);
-drop table user_rol;
+
  create table perfil(
 	id int primary key auto_increment,
     id_user int, 
@@ -36,22 +29,11 @@ drop table user_rol;
     
  );
 
-insert into usuario (nombre,apellido,email,nick,pass,id_rol,estado)
- values ("Diego","Flores","floresdiego2015@gmail.com","chew","123456",1,true);
- insert into usuario (nombre,apellido,email,nick,pass,id_rol,estado)
- values ("Enzo","Gonzalez","enzo@mascapi.com","Enzo2023","12345",1,true);
+insert into usuario (nombre,apellido,email,nick,pass,estado,nombreRol,permisos)
+ values ("Diego","Flores","floresdiego2015@gmail.com","chew","123456",true,'Administrador',1);
+ insert into usuario (nombre,apellido,email,nick,pass,estado,nombreRol,permisos)
+ values ("Enzo","Gonzalez","enzo@mascapi.com","Enzo2023","12345",true,'Administrador',1);
 
- insert into user_rol(nombreRol,id_user,permisos)
- values ('Administrador',1,1);
- insert into user_rol(nombreRol,id_user,permisos)
- values ('Administrador',2,1);
- 
- update usuario
- set nombreRol='Administrador', permisos=1
- where id=1;
-  update usuario
- set nombreRol='Administrador', permisos=1
- where id=2;
  
  insert into perfil(id_user,img,notas,colorHeader,background,ligthDark)
  values (1,"https://i.pinimg.com/originals/6a/5f/7f/6a5f7f9636c3412617756297fa60b78c.jpg",
