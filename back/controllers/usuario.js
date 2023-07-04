@@ -1,3 +1,4 @@
+// const { query } = require('express')
 const {connection}= require('../db/configDb')
 
 const queryDatabase=(query,values)=>{
@@ -34,4 +35,56 @@ const mostrar = (req,res) =>{
     })
 
 } 
-module.exports={mostrar, login}
+
+const nuevoUsuario= async (req, res) =>{
+    try{
+        const {nombre,apellido,email,nick,pass,estado,rol,permisos}=req.body
+        console.log("solicitud frontend -->", req.body);
+        const query = 'INSERT INTO usuario (nombre,apellido,email,nick,pass,estado,nombreRol,permisos) values(?,?,?,?,?,?,?,?)'
+        const values=[nombre, apellido, email, nick, pass, estado, rol, permisos]
+        const rows = await queryDatabase(query, values)
+        res.status(200).json(rows)
+    }catch(error){
+        console.error('Error al realizar la consulta')
+        res.status(500).json({ error: 'Error al realizar la consulta' })
+    }
+}
+
+    const eliminarUsuario = async (req, res) =>{
+    try{
+    const {idUsuario}=req.params.id
+    console.log("solicitud Frontend -->", req.params.id);
+    const query =connection.query(`DELETE FROM usuario WHERE id=`+idUsuario)
+    const values=[idUsuario]
+    const rows = await queryDatabase(query,values)
+    res.status(200).json(rows)
+    } catch(error){
+        console.error('Error al realizar la consulta')
+        res.status(500).json({error:'error al realizar la consulta'})
+    }
+    
+}
+    // const eliminarUsuario = (req, res) => {
+    //     const idUsuario = req.body;
+    //     console.log("solicidtud del frontend", idUsuario)
+    //     connection.query("DELETE FROM usuario WHERE id = "+ idUsuario, (error, results) => {
+    //     if (error) throw error;
+    //     res.json("Registro Eliminado");
+    //     console.log("Registro Eliminado");
+    //     });
+    // }
+
+const editarUsuario = async (req, res)=> {
+    try{
+        const {idUsuario,nombre,apellido,email,nick,pass,estado,rol,permisos}=req.body
+        console.log("solicitud frontend -->", req.body)
+        const query= 'UPDATE usuario SET nombre =?, apellido=?,email=?,nick=?,pass=?,estado=?,nombreRol=?,permisos=? WHERE id=?'
+        const values=[nombre, apellido, email, nick, pass, estado, rol, permisos, idUsuario]
+        const rows= await queryDatabase(query,values)
+        res.status(200).json(rows)
+    }catch(error){
+        console.error('Error al realizar la consulta')
+        res.status(500).json({error:'error al realizar la consulta'})
+    }
+}
+module.exports={mostrar, login, nuevoUsuario,editarUsuario,eliminarUsuario}
