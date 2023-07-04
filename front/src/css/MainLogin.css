@@ -134,5 +134,13 @@ input:valid ~ label{
    top: 20px;
 }
 
+.icono-password{
+    position: absolute;
+    right: 35px;
+   color: aliceblue;
+   font-size: 1.2em;
+   top: 20px;
+}
+
 
 
