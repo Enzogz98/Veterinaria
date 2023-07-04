@@ -126,6 +126,7 @@ insert into perfil(id_user,img,notas,colorHeader,background,ligthDark)
  telefono varchar(50),
  cuit varchar(50) null
  );
+ select*from cliente;
  
  UPDATE usuario SET nombre ="alvaro", apellido="albornoz",email="alvarito+kpito",nick="lloveratrolo",pass="1234567",estado=1,nombreRol="ESCLAVO",permisos=2 WHERE id=4;
  DELETE FROM usuario WHERE id =4;

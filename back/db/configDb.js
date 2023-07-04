@@ -5,7 +5,19 @@ const connection = mysql.createConnection({
     password: "root",
     database: "veterinariaBD",
   });
-
+  const queryDatabase = (query, values)=>{
+    return new Promise((resolve,reject)=>{
+        console.log(query,values)
+        connection.query(query, values,(error, rows)=>{
+            if (error) {
+                reject(error);
+            } else {
+                resolve(rows);
+                console.log("Respuesta base de datos --->",rows);
+            }
+        });
+    });
+};
   
-  module.exports ={connection}
+  module.exports ={connection,queryDatabase}
 
