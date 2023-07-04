@@ -1,0 +1,62 @@
+.footer-container{
+    text-indent: 20px;
+    color:rgb(255, 255, 255);  
+    background-color: rgb(33, 51, 99);
+    font-family: 'Quicksand', sans-serif;
+
+}
+
+.Redes{
+text-decoration: underline;
+display:flex;
+color:aliceblue;
+width: 1350px;
+justify-content: center;
+flex-direction: column;
+align-items: center;
+padding: 10px;
+margin: 0 10px 10px 0;
+border-radius: 50%;
+min-height: 40px;
+text-align: center;
+line-height: 40px;
+
+}
+
+.contacto{
+    text-decoration: underline;
+}
+
+.direccion{
+  
+    color:aliceblue;
+    transition: all .3s ease;
+    
+}
+
+.footer-container .social-icons {
+    margin-top: 20px;
+  }
+  
+  .footer-container .social-icons a {
+    display: inline-block;
+    margin: 0 3px;
+   
+    
+  }
+
+.copyright{
+    display: flex;
+
+}
+.copyright .icon{
+    
+    margin-top:5px;
+    margin-left: 42%;
+
+}
+.copyright p{
+    position: absolute;
+    margin-left: 42.5%;
+
+}

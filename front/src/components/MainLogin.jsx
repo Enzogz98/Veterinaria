@@ -5,14 +5,17 @@ import { useNavigate } from "react-router-dom";
 import "../css/MainLogin.css";
 
 import { TfiEmail, TfiLock } from "react-icons/tfi";
+import { VscEye,VscEyeClosed } from "react-icons/vsc";
 
 const MainLogin = () => {
   const [nickEmail, setNickEmail] = useState("");
   const [pass, setPass] = useState("");
   const navigate = useNavigate();
   const [data, setData] = useState();
+  const [mostrarP, setMostrarP] = useState(false);
 
-  
+
+
 
   useEffect(() => {
     if (data) {
@@ -47,6 +50,17 @@ const MainLogin = () => {
       console.error("Error al realizar la peticion: ", error);
     }
   };
+
+  // window.addEventListener("keydown", (e) => {
+  //   if (e.keyCode === 13) {
+  //     login();
+  //     console.log("enter");
+  //   }
+  // });
+
+
+
+
   return (
     <>
       <div className="body-login">
@@ -66,11 +80,14 @@ const MainLogin = () => {
               <label htmlFor="">Nick/Email:</label>
             </div>
 
-            <div className="contenedor-label">
+            <div className="contenedor-label" >
+
               <TfiLock className="icono" />
+
+               {mostrarP? <VscEye className="icono-password" onClick={()=> setMostrarP(!mostrarP)}/> : <VscEyeClosed className="icono-password" onClick={()=> setMostrarP(!mostrarP)}/>  } 
               <input
                 onChange={(e) => setPass(e.target.value)}
-                type="password"
+                type={mostrarP ? "text" : "password"}
                 required
               />
               <label htmlFor="">Password:</label>
