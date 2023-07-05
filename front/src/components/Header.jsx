@@ -42,17 +42,23 @@ const Header = () => {
             <Navbar.Collapse id="basic-navbar-nav">
               <Nav className="ml-auto">
                 <div className="nav-contenedor">
-                  <Nav.Link onClick={() => (alert("redirigir a usuarios"), navigate("/usuarios"))} className="nav-link">
-                    <p>Usuarios</p>
+
+                  <Nav.Link className="nav-link">
+                    <Link to='/usuarios'> <p>Usuarios</p></Link>
+                   
                   </Nav.Link>
-                  <Nav.Link  onClick={() => (alert("redirigir a pacientes"), navigate("/pacientes"))} className="nav-link">
-                    <p>Pacientes</p>
+                  <Nav.Link className="nav-link">
+                    <Link to='/pacientes'> <p>Pacientes</p></Link>
+                   
                   </Nav.Link>
-                  <Nav.Link onClick={() => (alert("redirigir a turnos"), navigate("/turnos"))}className="nav-link">
-                    <p>Turnos</p>
+                  <Nav.Link  className="nav-link">
+                    <Link to='/turnos'><p>Turnos</p>
+                    </Link>
+
                   </Nav.Link>
-                  <Nav.Link onClick={() => (alert("redirigir a ventas"), navigate("/ventas"))} className="nav-link">
-                    <p>Ventas</p>
+                  <Nav.Link  className="nav-link">
+                    <Link to='/ventas'> <p>Ventas</p> </Link>
+                    
                   </Nav.Link>
                 </div>
 
