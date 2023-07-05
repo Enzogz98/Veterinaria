@@ -42,7 +42,7 @@ const [id,setIdVet]=useState(0)
     }
     const putEditar= async()=>{
         try {
-          const response = await axios.put("http://localhost:3000/veterinarios",{nombre,apellido,dni,matricula,especialidad,horario,telefono})
+          const response = await axios.put("http://localhost:3000/veterinarios",{nombre,apellido,dni,matricula,especialidad,horario,telefono,id})
           if(response.status === 200){
             alert("se realizo la modificacion con exito");
             mostrarVeterinarios();
@@ -62,6 +62,7 @@ const [id,setIdVet]=useState(0)
         setMatricula(dato.matricula);
         setEspecialidad(dato.especialidad);
         setHorario(dato.horario);
+        setTelefono(dato.telefono);
         setIdVet(dato.id);
         setSwitchEditar(true);
         
@@ -73,6 +74,7 @@ const [id,setIdVet]=useState(0)
     setMatricula("");
     setEspecialidad("");
     setHorario("");
+    setTelefono("");
     setSwitchEditar(false);
   }
 
@@ -108,28 +110,28 @@ const [id,setIdVet]=useState(0)
   return (
     <>
         <div>
-            <h4>Agregar Veterinario</h4>
+            {switchEditar==false?(<h4>Agregar Veterinario</h4>):(<h4>Editar Veterinario</h4>)}
             <form onSubmit={handlePost}>
                 <label >Nombre:</label>
-                <input type="text" onChange={(e)=>(setNombre(e.target.value))} />
+                <input type="text"value={nombre} onChange={(e)=>(setNombre(e.target.value))} />
                 <br />
                 <label >Apellido:</label>
-                <input type="text" onChange={(e)=>(setApellido(e.target.value))} />
+                <input type="text"value={apellido} onChange={(e)=>(setApellido(e.target.value))} />
                 <br />
                 <label >Dni:</label>
-                <input type="number" onChange={(e)=>(setDni(e.target.value))} />
+                <input type="number"value={dni} onChange={(e)=>(setDni(e.target.value))} />
                 <br />
                 <label >Matricula:</label>
-                <input type="number" onChange={(e)=>(setMatricula(e.target.value))} />
+                <input type="number"value={matricula} onChange={(e)=>(setMatricula(e.target.value))} />
                 <br />
                 <label >Especialidad:</label>
-                <input type="text" onChange={(e)=>(setEspecialidad(e.target.value))} />
+                <input type="text"value={especialidad} onChange={(e)=>(setEspecialidad(e.target.value))} />
                 <br />
                 <label >Horario:</label>
-                <input type="text" onChange={(e)=>(setHorario(e.target.value))} />
+                <input type="text"value={horario} onChange={(e)=>(setHorario(e.target.value))} />
                 <br />
                 <label >Telefono:</label>
-                <input type="text" onChange={(e)=>(setTelefono(e.target.value))} />
+                <input type="text"value={telefono} onChange={(e)=>(setTelefono(e.target.value))} />
                 <br />
                 <br />
                 {switchEditar==false?(<button type='submit'>Agregar Paciente</button>):(
