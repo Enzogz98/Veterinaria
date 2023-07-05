@@ -50,19 +50,31 @@ const nuevoUsuario= async (req, res) =>{
     }
 }
 
-    const eliminarUsuario = async (req, res) =>{
-    try{
-    const {idUsuario}=req.params.id
-    console.log("solicitud Frontend -->", req.params.id);
-    const query =connection.query(`DELETE FROM usuario WHERE id=`+idUsuario)
-    const values=[idUsuario]
-    const rows = await queryDatabase(query,values)
-    res.status(200).json(rows)
-    } catch(error){
-        console.error('Error al realizar la consulta')
-        res.status(500).json({error:'error al realizar la consulta'})
-    }
+//     const eliminarUsuario = async (req, res) =>{
+//     try{
+//     const {id}=req.body
+//     console.log("solicitud Frontend -->", req.body);
+//     const query =connection.query(`DELETE FROM usuario WHERE id=?`)
+//     const values=[id]
+//     const rows = await queryDatabase(query,values)
+//     res.status(200).json(rows)
+//     } catch(error){
+//         console.error('Error al realizar la consulta')
+//         res.status(500).json({error:'error al realizar la consulta'})
+//     }
     
+// }
+const eliminarUsuario = (req, res) =>{
+    const idUsuario = req.params.id;
+    connection.query('DELETE FROM usuario WHERE id=?',idUsuario,
+    (error,results)=>{
+        if(error){
+            console.log(error)
+        }
+        else{
+            res.send(results)
+        }
+    })
 }
     // const eliminarUsuario = (req, res) => {
     //     const idUsuario = req.body;
@@ -87,4 +99,18 @@ const editarUsuario = async (req, res)=> {
         res.status(500).json({error:'error al realizar la consulta'})
     }
 }
-module.exports={mostrar, login, nuevoUsuario,editarUsuario,eliminarUsuario}
+const mostrarUno = (req,res)=>{
+    const idUsuario=req.params.id
+    connection.query('SELECT * FROM usuario WHERE id=?',idUsuario,
+    (error,results)=>{
+        if(error){
+            console.log(error)
+        }
+        else{
+            res.send(results)
+        }
+    }
+    )
+
+}
+module.exports={mostrar, login, nuevoUsuario,editarUsuario,eliminarUsuario, mostrarUno}
