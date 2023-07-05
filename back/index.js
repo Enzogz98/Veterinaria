@@ -9,6 +9,7 @@ const tareas=require("./routes/tareas")
 const usuario=require("./routes/usuario");
 const clientes=require("./routes/clientes");
 const pacientes=require('./routes/pacientes');
+const turnos=require('./routes/turnos')
 
 
 
@@ -32,7 +33,7 @@ app.get('/', (req,res) => {
   res.json("todo ok");
 });
 
-
+app.use('/', turnos)
 app.use('/', perfil)
 
 app.use('/', tareas)

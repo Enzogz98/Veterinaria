@@ -117,18 +117,6 @@ insert into perfil(id_user,img,notas,colorHeader,background,ligthDark)
  edad varchar(50),
  estado bool);
  
- insert into paciente(nomPac,dni_duenio,especie,raza,edad,estado)
- values ("cacho",2020,'felino','siames',7,1);
- 
- update paciente 
- set nomPac='cachito',
-	 dni_duenio=2020,
-     especie='felino',
-     raza='siames',
-     edad=7,
-     estado=1
-where id=10;     
- 
  create table cliente(
  id int primary key auto_increment,
  nombre varchar(50),
@@ -139,7 +127,31 @@ where id=10;
  cuit varchar(50) null
  );
  select*from cliente;
- select*from paciente;	
+ select*from paciente;
+ 
+ insert into cliente (nombre,apellido,direccion,dni,telefono,cuit) values 
+ ('Juan','Sotelo','San Martin 500',34123090,'3814564544','20-34123090-1'),
+ ('Dario','Benedetto','Monteagudo 1100',24333678,'3814421264','20-24333678-7'),
+ ('Emiliano','Martinez','Ayacucho 231',19345123,'3813768945','22-19345123-7'),
+ ('Lionel','Messi','Jujuy 4000',22987654,'3816428931','20-22987654-5'),
+ ('Ricardo','Arjona','Chacabuco 120',18099122,'3814762953','20-18099122-2'),
+ ('Emanuel','Noir','Rivadavia 500',25186239,'3813057929','20-25186239-1'),
+ ('Walter','Salinas', 'España 200',30193759,'3815195349','21-30193759-3'),
+ ('Alvaro','Albornoz','Guemes 1200',39478090,'3816821901','20-39478090-2'),
+ ('Nelson','Lobo','Famailla - Famailla',40532283,'3813438063','20-40532283-1'),
+ ('Diego','Flores','Amador Lucero 500',38340246,'3816155136','20-38340246-9'),
+ ('Enzo','Gonzalez','Pje Williams 2622',41772351,'3814563507','20-41772351-0');
+ insert into paciente (nomPac,dni_duenio,especie,raza,edad,estado) values
+('Rufo',34123090,'Canino','Pitbull','2',TRUE),
+('Pio',24333678,'Ave','Pollo',1,FALSE),
+('Hulk',22987654,'Canino','Dogo de Burdeo','3',TRUE),
+('Elotro',34123090,'Ave','Tordo','1',FALSE),
+('Lobito',40532283,'Canino','Lobo Siberiano','2',TRUE),
+('Pipi',25186239,'Ave','Perico','1',TRUE),
+('Michifus',30193759,'Felino','Persa','3',TRUE),
+('Lula',39478090,'Canino','Caniche','4',TRUE),
+('Scooby',19345123,'Canino','Gran Danés','5',TRUE);
+
  
 select A.id,A.nomPac ,A.especie,A.raza,A.edad,A.estado,B.nombre from paciente A
 inner join cliente B on A.dni_duenio=B.dni;
@@ -151,7 +163,7 @@ join cliente B on A.dni_duenio=B.dni;
 select A.id,A.nomPac,A.especie,A.raza,A.edad,A.estado,concat(B.apellido," ",B.nombre) as cliente,B.dni as dniCliente from 
 paciente A 
 join cliente B on A.dni_duenio=B.dni
-where (A.nomPac like "c%")
+where (A.nomPac like "ap%")
 order by id asc;
 
 	
@@ -162,3 +174,57 @@ order by id asc;
  UPDATE usuario SET nombre ="alvaro", apellido="albornoz",email="alvarito+kpito",nick="lloveratrolo",pass="1234567",estado=1,nombreRol="ESCLAVO",permisos=2 WHERE id=4;
  DELETE FROM usuario WHERE id =4;
  
+ CREATE TABLE turnos(
+ id int primary key auto_increment,
+ idPac int,
+ dniCliente int,
+ observaciones varchar(250),
+ fecha varchar(50),
+ idVet int,
+ tipo varchar(50)
+ );
+ 
+ insert into turnos (idPac, dniCliente, observaciones, fecha, idVet, tipo)
+ values (1, 34123090, "Perrito con malestar estomacal", "05-07-2023 1:26", 1, "consulta"); 
+ 
+ 
+ CREATE TABLE veterinario(
+ id int primary key auto_increment,
+ nombre varchar(50),
+ apellido varchar(50),
+ dni int,
+ matricula int,
+ especialidad varchar(50),
+ horario varchar(150),
+ telefono varchar(50)
+ );
+ 
+ INSERT into turnos (idPac, dniCliente, observaciones, fecha, idVet, tipo)
+ VALUES(2,24333678,'Ave con dificultades para comer', '05-07-2023 3:26', 1,'consulta');
+
+ 
+ INSERT into turnos (idPac, dniCliente, observaciones, fecha, idVet, tipo)
+ VALUES('3',
+  '22987654',
+  'Perro con calculos renales',
+  '2023-07-13T06:36',
+  '1',
+  'Operacion');
+  select * from turnos;
+  UPDATE turnos
+  SET   idPac=2,
+  dniCliente=24333678,
+  observaciones='Ave con dificultades para comer',
+  fecha='2023-07-05T03:49',
+  idVet=1,
+  tipo='Consulta'
+  WHERE id=2;
+  UPDATE turnos
+  SET   idPac=1,
+  dniCliente=34123090,
+  observaciones='Perrito con malestar estomacal',
+  fecha='2023-07-05T04:48',
+  idVet=1,
+  tipo='Consulta'
+  WHERE id=1;
+  DELETE FROM turnos WHERE id =3;
