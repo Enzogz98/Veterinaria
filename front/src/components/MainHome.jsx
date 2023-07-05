@@ -397,7 +397,7 @@ const MainHome = () => {
           </div>
         ))}
 
-        <button onClick={logOut}> Cerrar sesion</button>
+        <button onClick={logOut} className="boton-cerrarSesion"> Cerrar sesion</button>
       </div>
     </>
   );

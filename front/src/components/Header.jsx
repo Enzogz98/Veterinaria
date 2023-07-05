@@ -9,9 +9,15 @@ import NavDropdown from "react-bootstrap/NavDropdown";
 import { useNavigate } from "react-router-dom";
 import { useRef, useState } from "react";
 
+const logOut = () => {
+  // localStorage.removeItem("userData");
+  // localStorage.removeItem("login");
+  navigate("/");
+};
+
 const Header = () => {
   const navigate = useNavigate();
-  const Menus = ["Profile", "YourApp", "settings", "logout"];
+  const Menus = ["Profile", "YourApp", "settings"];
   const [open, setOpen] = useState(false);
   const menuRef = useRef();
   const imgRef = useRef();
@@ -35,16 +41,16 @@ const Header = () => {
             <Navbar.Collapse id="basic-navbar-nav">
               <Nav className="ml-auto">
                 <div className="nav-contenedor">
-                  <Nav.Link href="#home" className="nav-link">
+                  <Nav.Link onClick={() => (alert("redirigir a usuarios"), navigate("/usuarios"))} className="nav-link">
                     <p>Usuarios</p>
                   </Nav.Link>
-                  <Nav.Link href="#features" className="nav-link">
+                  <Nav.Link  onClick={() => (alert("redirigir a pacientes"), navigate("/pacientes"))} className="nav-link">
                     <p>Pacientes</p>
                   </Nav.Link>
-                  <Nav.Link href="#features" className="nav-link">
+                  <Nav.Link onClick={() => (alert("redirigir a turnos"), navigate("/turnos"))}className="nav-link">
                     <p>Turnos</p>
                   </Nav.Link>
-                  <Nav.Link href="#pricing" className="nav-link">
+                  <Nav.Link onClick={() => (alert("redirigir a ventas"), navigate("/ventas"))} className="nav-link">
                     <p>Ventas</p>
                   </Nav.Link>
                 </div>
@@ -63,13 +69,11 @@ const Header = () => {
                   {open && (
                     <div className="dropdown" ref={menuRef}>
                       {Menus.map((menu) => (
-                        <p
-                          className="li-dropdown"
-                          onClick={() => setOpen(false)}
-                        >
+                        <p className="li-dropdown" onClick={() => setOpen(false)}>
                           {menu}
                         </p>
                       ))}
+                      <button onClick={logOut}>logout</button>
                     </div>
                   )}
                 </div>

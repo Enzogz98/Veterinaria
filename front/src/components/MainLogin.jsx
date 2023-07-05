@@ -93,7 +93,7 @@ const MainLogin = () => {
               <label htmlFor="">Password:</label>
             </div>
 
-            <button onClick={login}>Ingresar</button>
+            <button onClick={login} className="boton-cerrarSesion">Ingresar</button>
           </div>
 
 
