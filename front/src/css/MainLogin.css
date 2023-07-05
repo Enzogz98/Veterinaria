@@ -19,7 +19,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 610px;
+    height: 700px;
     background: url('../assets/bgr.login.jpg') no-repeat center fixed;
     background-size: cover;
     font-family: 'Quicksand', sans-serif;

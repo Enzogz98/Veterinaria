@@ -1,53 +1,66 @@
 @keyframes cambio-de-color {
-  from{ background-color: aliceblue;}
-  to{background-color: rgba(23, 89, 74, 0.877);}
+  from { 
+    background-color: aliceblue;
+  }
+  to {
+    background-color: rgba(23, 89, 74, 0.877);
+  }
 }
 
+.contenedor-navars {
+  width: 100%;
+  height: 100px;
+  font-family: 'Karla', sans-serif;
+  background-color: rgb(238, 238, 238);
+  position: sticky;
+  top: 0px;
+  z-index: 45;
+}
 
-.contenedor-brand{
+.contenedor-brand {
   display: flex;
   margin-left: -80px;
+  margin-top: -30px;
 }
 
 .header-image1 {
-  width: 100px;
+  width: 90px;
 }
 
 .header-image2 {
   width: 250px;
   margin-right: 10px;
+  margin-top: 5px;
 }
 
-.nav-contenedor{
+.nav-contenedor {
   display: flex;
   align-items: center;
-padding-top: 15px;
+  padding-top: 15px;
 }
 
-.nav-link p{
+.nav-link p {
   font-size: 1.3em;
   padding: 10px;
 }
 
-.nav-link p:hover{
-  animation-name: cambio-de-color ;
+.nav-link p:hover {
+  animation-name: cambio-de-color;
   animation-timing-function: ease-out;
-  animation-duration: .5s;
+  animation-duration: 0.5s;
   animation-fill-mode: forwards;
   color: aliceblue;
   border-radius: 100px;
-
 }
 
 .header-image3 {
-  width: 100px;
-  height: 100px;
+  width: 70px;
+  height: 70px;
   border-radius: 50%;
   box-shadow: 3px 4px 8px 0 rgba(0, 0, 0, 0.548);
-    
 }
 
-.dropdown{
+.dropdown {
   position: absolute;
   text-align: center;
   background-color: aliceblue;
@@ -58,24 +71,66 @@ padding-top: 15px;
   border-radius: 20px;
   animation-name: scale;
   animation-timing-function: ease-in-out;
-  animation-duration: .3s;
+  animation-duration: 0.3s;
   animation-fill-mode: forwards;
 }
 
-.dropdown .li-dropdown{
+.dropdown .li-dropdown {
   width: 100%;
   cursor: pointer;
   padding: 5px;
-  
 }
 
-.dropdown .li-dropdown:hover{
+.dropdown .li-dropdown:hover {
   background-color: rgba(23, 89, 74, 0.329);
   border-radius: 20px;
-  
 }
 
 .navbar {
   color: rgb(23, 89, 74);
 }
+
+@media (max-width: 768px) {
+.contenedor-navars{
+  height: auto;
+}
+
+  .contenedor-brand {
+    margin-left: 0;
+
+  }
+  .header-image1{
+    width: 50px;
+    margin-top: 20px;
+  }
   
+  .header-image2 {
+    width: 100px;
+    margin-top: 20px;
+  }
+  
+  .nav-contenedor {
+    padding-top: 5px;
+  }
+  
+  .nav-link p {
+    font-size: 1em;
+    padding: 5px;
+  }
+  
+  .header-image3 {
+    width: 50px;
+    height: 50px;
+  }
+  
+  .dropdown {
+    width: 30%;
+    right: 2%;
+    margin-top: 5px;
+  }
+  
+  .dropdown .li-dropdown {
+    padding: 2px;
+  }
+}
+

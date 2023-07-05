@@ -1,62 +1,57 @@
 .footer-container{
+    backdrop-filter: blur(10px) ;
+    background: url('../assets/bgr.login.jpg') no-repeat center fixed;
+    background-size: cover;
     text-indent: 20px;
-    color:rgb(255, 255, 255);  
-    background-color: rgb(33, 51, 99);
     font-family: 'Quicksand', sans-serif;
+    
 
 }
 
-.Redes{
-text-decoration: underline;
-display:flex;
-color:aliceblue;
-width: 1350px;
-justify-content: center;
-flex-direction: column;
-align-items: center;
-padding: 10px;
-margin: 0 10px 10px 0;
-border-radius: 50%;
-min-height: 40px;
-text-align: center;
-line-height: 40px;
-
-}
-
-.contacto{
-    text-decoration: underline;
+.contenedor-footer2{
+    backdrop-filter: blur(10px);
 }
 
 .direccion{
-  
     color:aliceblue;
-    transition: all .3s ease;
-    
-}
-
-.footer-container .social-icons {
-    margin-top: 20px;
-  }
-  
-  .footer-container .social-icons a {
-    display: inline-block;
-    margin: 0 3px;
-   
-    
-  }
-
-.copyright{
     display: flex;
-
-}
-.copyright .icon{
+    justify-content: center;
+    align-items: center;
     
-    margin-top:5px;
-    margin-left: 42%;
+}
+
+.Redes{
+display:flex;
+color:aliceblue;
+justify-content: center;
+flex-direction: column;
+align-items: center;
+text-align: center;
 
 }
-.copyright p{
-    position: absolute;
-    margin-left: 42.5%;
 
+
+
+
+.social-icons{
+   width: 100%;
+   display: flex;
+   justify-content: center;
+
+}
+
+ .copyright{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+
+}
+
+.iconCopy{
+    margin-top: 4px;
+}
+
+.icono-1, .icono-2, .icono-3{
+    color: rgba(240, 248, 255, 0.658);
+    
 }
