@@ -12,6 +12,7 @@ const Usuario = () => {
   const [rol,setRol]=useState("")
   const [permisos,setPermisos]=useState(1)
   const [idUsuario,setIdUsuario]=useState(0)
+  const [botones,setBotones]= useState(false)
   
   
   const mostrar = async () => {
@@ -34,6 +35,18 @@ const Usuario = () => {
        setEstado(usuario.estado)
        setRol(usuario.nombreRol)
        setPermisos(usuario.permisos)
+       setBotones(true)
+    }
+    const Cancelar = () =>{
+      setNombre("")
+      setApellido("")
+       setEmail("")
+       setNick("")
+       setPass("")
+       setEstado(true)
+       setRol("")
+       setPermisos(0)
+       setBotones(false)
     }
 
     
@@ -74,6 +87,7 @@ const Usuario = () => {
           if(response.status===200){
             alert("se hizo la modificacion correctamente")
             mostrar()
+            setBotones(false)
           }else{
             alert("hubo un error en la modificacion de datos")
           }
@@ -84,39 +98,36 @@ const Usuario = () => {
     }
 
   
-    const borrarUsuario = async (usuario) =>{
-      console.log(usuario)
-      try{
-        const response = await axios.delete(`http://localhost:3000/usuario/delete/${usuario.id}`)
-        if (response.status===200){
-          alert("se elimino el error correctamente")
-          mostrar();
-        } else{ 
-          alert("error en la eliminacion")
-        }
-
-      } catch{
-        alert("error en la consulta")
-      }
-    }
-
-    // const eliminarUsuario =async (id)=> {
-    //   try{
-    //     const response = await axios.delete(`http://localhost:3000/usuario/${id}`)
-    //     if (response.status===200){
-    //       alert("se elimino el error correctamente")
-    //       mostrar();
-    //     } else{ 
-    //       alert("error en la eliminacion")
-    //     }
-
-    //   } catch{
-    //     alert("error en la consulta")
-    //   }
+    // const borrarUsuario = (usuario) =>{
+    //   axios.delete(`http://localhost:3000/usuario/delete/`+usuario.id).then(()=>{
+      //get usuario con un id
+    //     axios.get(`http://localhost:3000/usuario/`+usuario.id).then((response)=>{
+    //       if(response.data){
+    //         alert("el usuario no pudo ser eliminado")
+    //       } else{
+    //         alert("el usuario se eliminó correctamente")
+    //         mostrar()
+    //       }
+    //     })
+    //     .catch((error)=>{
+    //       console.error("ocurrio un error en la eliminacion", error)
+    //     })
+    //   })
     // }
-
-
-    
+    const borrarUsuario = (usuario) => {
+      axios.delete(`http://localhost:3000/usuario/delete/` + usuario.id)
+        .then((response) => {
+          if (response.status === 200) {
+            alert('El usuario se eliminó correctamente');
+            mostrar();
+          } else {
+            alert('No se pudo eliminar el usuario');
+          }
+        })
+        .catch((error) => {
+          console.error('Error al eliminar el usuario:', error);
+        });
+    };    
   useEffect(()=>{
     if(datos!==null){
         console.log(datos)
@@ -160,8 +171,9 @@ const Usuario = () => {
 
         <br />
         
-        <button type="submit" onClick={agregarUsuario}>Ingrese un nuevo usuario</button>
-        <button type="button" onClick={modificarUsuario}>Modificar</button>
+        <button type="submit" onClick={agregarUsuario} disabled={botones} >Ingrese un nuevo usuario</button>
+        <button type="submit" onClick={modificarUsuario} disabled = {!botones}>Editar</button>
+        <button type="submit" onClick={Cancelar} disabled={!botones}>Cancelar</button>
         <br />
         <br />
         <br />
