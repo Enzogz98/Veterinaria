@@ -371,7 +371,18 @@ const MainHome = () => {
                                 <td>{elemento.descripcion}</td>
                                 <td>{elemento.fecha_inicio}</td>
                                 <td>{elemento.fecha_finalizacion}</td>
-                                <td>{elemento.prioridad}</td>
+                                <td>{(() => {
+    if (elemento.prioridad == 1) {
+
+      return <span>Prioridad Maxima</span>; 
+    } else if (elemento.prioridad == 2) {
+
+      return <span>Prioridad Media</span>; 
+    } else  {
+
+      return <span>Prioridad Baja</span>; 
+    }
+  })()}</td>
                                 <td>
                                   <button  className="btn-editar" onClick={() => onEditar(elemento)}>
                                     Editar

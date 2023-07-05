@@ -4,6 +4,7 @@ import Home from './pages/Home'
 import Usuarios from './pages/Usuarios'
 import Pacientes from './pages/Pacientes'
 import Turnos from './pages/Turnos'
+import Veterinarios from './pages/Veterinarios'
 
 function App() {
 
@@ -16,6 +17,7 @@ function App() {
       <Route path='/usuarios' element={<Usuarios/>}/>
       <Route path='/pacientes' element={<Pacientes/>}/>
       <Route path='/turnos' element={<Turnos/>}></Route>
+      <Route path='/veterinarios' element={<Veterinarios/>}></Route>
       
     </Routes>
     </BrowserRouter>

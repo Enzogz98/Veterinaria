@@ -17,7 +17,7 @@ const cargarTareas= async (req,res) =>{
     try{
         const {id_u}=req.body;
         console.log("solicitud frontend -->",req.body);
-        const query='select * from tareas where idUser=?';
+        const query='select * from tareas where idUser=? order by prioridad ASC ';
         const values=[id_u];
         const rows = await queryDatabase(query,values);
         res.status(200).json(rows)
