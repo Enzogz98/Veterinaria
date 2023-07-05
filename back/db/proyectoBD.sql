@@ -111,10 +111,54 @@ insert into perfil(id_user,img,notas,colorHeader,background,ligthDark)
  CREATE TABLE paciente(
  id int primary key auto_increment,
  nomPac varchar(50),
- id_dueño int,
+ dni_duenio int,
  especie varchar(50),
  raza varchar(50),
  edad varchar(50),
  estado bool);
  
+ insert into paciente(nomPac,dni_duenio,especie,raza,edad,estado)
+ values ("cacho",2020,'felino','siames',7,1);
+ 
+ update paciente 
+ set nomPac='cachito',
+	 dni_duenio=2020,
+     especie='felino',
+     raza='siames',
+     edad=7,
+     estado=1
+where id=10;     
+ 
+ create table cliente(
+ id int primary key auto_increment,
+ nombre varchar(50),
+ apellido varchar (50),
+ direccion varchar(70),
+ dni int,
+ telefono varchar(50),
+ cuit varchar(50) null
+ );
+ select*from cliente;
+ select*from paciente;	
+ 
+select A.id,A.nomPac ,A.especie,A.raza,A.edad,A.estado,B.nombre from paciente A
+inner join cliente B on A.dni_duenio=B.dni;
+
+select A.id,A.nomPac,A.especie,A.raza,A.edad,A.estado,concat(B.apellido," ",B.nombre) as cliente,B.dni as dniCliente from 
+paciente A 
+join cliente B on A.dni_duenio=B.dni;
+
+select A.id,A.nomPac,A.especie,A.raza,A.edad,A.estado,concat(B.apellido," ",B.nombre) as cliente,B.dni as dniCliente from 
+paciente A 
+join cliente B on A.dni_duenio=B.dni
+where (A.nomPac like "c%")
+order by id asc;
+
+	
+
+
+
+ 
+ UPDATE usuario SET nombre ="alvaro", apellido="albornoz",email="alvarito+kpito",nick="lloveratrolo",pass="1234567",estado=1,nombreRol="ESCLAVO",permisos=2 WHERE id=4;
+ DELETE FROM usuario WHERE id =4;
  

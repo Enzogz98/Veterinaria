@@ -224,7 +224,7 @@ const MainHome = () => {
           <div key={user.id}>
             {/* <li>Id: {user.id}</li>
           <li>Estado {user.estado} </li>
-          <li>Rol {user.id_rol}</li>
+          <li>Rol: {user.nombreRol}</li>
           <li>Nick:{user.nick}</li>
           <li>Email:{user.email}</li>
           <li>Pass:{user.pass}</li> */}
