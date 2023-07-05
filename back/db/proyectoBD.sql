@@ -185,7 +185,7 @@ order by id asc;
  );
  
  insert into turnos (idPac, dniCliente, observaciones, fecha, idVet, tipo)
- values (1, 38340246, "Perrito con malestar estomacal", "05-07-2023 1:26", 1, "consulta"); 
+ values (1, 34123090, "Perrito con malestar estomacal", "05-07-2023 1:26", 1, "consulta"); 
  
  
  CREATE TABLE veterinario(
@@ -199,4 +199,32 @@ order by id asc;
  telefono varchar(50)
  );
  
+ INSERT into turnos (idPac, dniCliente, observaciones, fecha, idVet, tipo)
+ VALUES(2,24333678,'Ave con dificultades para comer', '05-07-2023 3:26', 1,'consulta');
+
  
+ INSERT into turnos (idPac, dniCliente, observaciones, fecha, idVet, tipo)
+ VALUES('3',
+  '22987654',
+  'Perro con calculos renales',
+  '2023-07-13T06:36',
+  '1',
+  'Operacion');
+  select * from turnos;
+  UPDATE turnos
+  SET   idPac=2,
+  dniCliente=24333678,
+  observaciones='Ave con dificultades para comer',
+  fecha='2023-07-05T03:49',
+  idVet=1,
+  tipo='Consulta'
+  WHERE id=2;
+  UPDATE turnos
+  SET   idPac=1,
+  dniCliente=34123090,
+  observaciones='Perrito con malestar estomacal',
+  fecha='2023-07-05T04:48',
+  idVet=1,
+  tipo='Consulta'
+  WHERE id=1;
+  DELETE FROM turnos WHERE id =3;
