@@ -18,6 +18,22 @@ const connection = mysql.createConnection({
         });
     });
 };
+
+const consultaTodosDatabase = (query)=>{
+    return new Promise((resolve,reject)=>{
+        console.log(query)
+        connection.query(query,(error, rows)=>{
+            if (error) {
+                reject(error);
+            } else {
+                resolve(rows);
+                console.log("Respuesta base de datos --->",rows);
+            }
+        });
+    });
+};
+
+
   
-  module.exports ={connection,queryDatabase}
+  module.exports ={connection,queryDatabase,consultaTodosDatabase}
 

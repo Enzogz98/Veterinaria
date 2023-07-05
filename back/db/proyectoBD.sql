@@ -111,7 +111,7 @@ insert into perfil(id_user,img,notas,colorHeader,background,ligthDark)
  CREATE TABLE paciente(
  id int primary key auto_increment,
  nomPac varchar(50),
- id_dueÃ±o int,
+ dni_duenio int,
  especie varchar(50),
  raza varchar(50),
  edad varchar(50),
@@ -127,6 +127,25 @@ insert into perfil(id_user,img,notas,colorHeader,background,ligthDark)
  cuit varchar(50) null
  );
  select*from cliente;
+ select*from paciente;
+ 
+select A.id,A.nomPac ,A.especie,A.raza,A.edad,A.estado,B.nombre from paciente A
+inner join cliente B on A.dni_duenio=B.dni;
+
+select A.id,A.nomPac,A.especie,A.raza,A.edad,A.estado,concat(B.apellido," ",B.nombre) as cliente,B.dni as dniCliente from 
+paciente A 
+join cliente B on A.dni_duenio=B.dni;
+
+select A.id,A.nomPac,A.especie,A.raza,A.edad,A.estado,concat(B.apellido," ",B.nombre) as cliente,B.dni as dniCliente from 
+paciente A 
+join cliente B on A.dni_duenio=B.dni
+where (A.nomPac like "ap%")
+order by id asc;
+
+	
+
+
+
  
  UPDATE usuario SET nombre ="alvaro", apellido="albornoz",email="alvarito+kpito",nick="lloveratrolo",pass="1234567",estado=1,nombreRol="ESCLAVO",permisos=2 WHERE id=4;
  DELETE FROM usuario WHERE id =4;

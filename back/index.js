@@ -7,7 +7,8 @@ const morgan = require('morgan');
 const perfil = require("./routes/perfil");
 const tareas=require("./routes/tareas")
 const usuario=require("./routes/usuario");
-const clientes=require("./routes/clientes")
+const clientes=require("./routes/clientes");
+const pacientes=require('./routes/pacientes');
 
 
 
@@ -36,4 +37,7 @@ app.use('/', perfil)
 app.use('/', tareas)
 
 app.use('/', usuario)
+
 app.use('/', clientes)
+
+app.use('/',pacientes)
