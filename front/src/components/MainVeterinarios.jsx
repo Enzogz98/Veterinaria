@@ -48,7 +48,7 @@ const [id,setIdVet]=useState(0)
             mostrarVeterinarios();
             cancelar();
           } else {
-            alert("hubo un error al cargar la modificacion  los datos");
+            alert("hubo un error al cargar la modificacion");
           }
           
         } catch (error) {
