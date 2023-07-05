@@ -1,4 +1,3 @@
-// const { query } = require('express')
 const {connection}= require('../db/configDb')
 
 const queryDatabase=(query,values)=>{

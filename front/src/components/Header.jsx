@@ -4,6 +4,7 @@ import perfil from "./../assets/perfil.jpg";
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
+import { Link } from "react-router-dom";
 import "../css/Header.css";
 import NavDropdown from "react-bootstrap/NavDropdown";
 import { useNavigate } from "react-router-dom";
@@ -35,14 +36,17 @@ const Header = () => {
             <Navbar.Collapse id="basic-navbar-nav">
               <Nav className="ml-auto">
                 <div className="nav-contenedor">
-                  <Nav.Link href="#home" className="nav-link">
-                    <p>Usuarios</p>
+                  <Nav.Link className="nav-link">
+                    <Link to='/usuarios'> <p>Usuarios</p></Link>
+                   
                   </Nav.Link>
-                  <Nav.Link href="#features" className="nav-link">
-                    <p>Pacientes</p>
+                  <Nav.Link className="nav-link">
+                    <Link to='/pacientes'> <p>Pacientes</p></Link>
+                   
                   </Nav.Link>
-                  <Nav.Link href="#features" className="nav-link">
-                    <p>Turnos</p>
+                  <Nav.Link  className="nav-link">
+                    <Link to='/turnos'><p>Turnos</p>
+                    </Link>
                   </Nav.Link>
                   <Nav.Link href="#pricing" className="nav-link">
                     <p>Ventas</p>
