@@ -1,6 +1,46 @@
 import React from 'react'
 import axios from 'axios'
 import { useEffect,useState } from 'react'
+import { enqueueSnackbar } from "notistack";
+
+const sucessClick = (dato) => {
+    if(dato==1){
+        enqueueSnackbar("Perfecto se Registro el nuevo Veterinario ! 😉", {
+            variant: "success",
+            anchorOrigin: {
+              vertical: "top",
+              horizontal: "left",
+            },
+        })
+    } else if (dato==2){
+        enqueueSnackbar("Se Edito el Veterinario ! 😉", {
+            variant: "success",
+            anchorOrigin: {
+              vertical: "top",
+              horizontal: "left",
+            },
+        })
+    } else {
+        enqueueSnackbar("Se ELimino el Veterinario ! 😮", {
+            variant: "error",
+            anchorOrigin: {
+              vertical: "top",
+              horizontal: "left",
+            },
+        })
+    }
+    };
+    const ErrorClick = () => {
+        enqueueSnackbar("Algo salio mal !!! 🤖", {
+            variant: "error",
+            anchorOrigin: {
+              vertical: "top",
+              horizontal: "right",
+            },
+        })
+    }
+            
+
 const MainVeterinarios = () => {
     
 const [nombre,setNombre]=useState("")
@@ -40,21 +80,23 @@ const [id,setIdVet]=useState(0)
                 }
             } catch (error) {
                 console.error("Error al realizar la consulta con el servidor ",error);
+                ErrorClick();
             }
     }
     const putEditar= async()=>{
         try {
           const response = await axios.put("http://localhost:3000/veterinarios",{nombre,apellido,dni,matricula,especialidad,horario,telefono,id})
           if(response.status === 200){
-            alert("se realizo la modificacion con exito");
             mostrarVeterinarios();
+            sucessClick(2)
             cancelar();
           } else {
-            alert("hubo un error al cargar la modificacion");
+            ErrorClick();
           }
           
         } catch (error) {
           console.error("Error al realizar la consulta ",error)
+          ErrorClick();
         }
       }
     const editarPaciente = (dato) =>{
@@ -84,15 +126,18 @@ const [id,setIdVet]=useState(0)
         try {
             const response = await axios.post("http://localhost:3000/veterinarios",{nombre,apellido,dni,matricula,especialidad,horario,telefono});
             if (response.status === 200){
-                alert("se cargo con exito el nuevo paciente");
+                
                 mostrarVeterinarios()
+                sucessClick(1)
                 cancelar()
 
             } else {
-                alert("hubo un error al cargar los datos");
+                ErrorClick();
             }
         } catch (error) {
             console.error("Error al realizar la consulta con el servidor",error)
+            ErrorClick();
+
         }
     };
 
@@ -101,10 +146,11 @@ const [id,setIdVet]=useState(0)
             const id_v=dato.id;
             const response =await axios.delete(url+id_v);
             if (response.status===200){
-                alert("se elimino el veterinario");
+                sucessClick(3)
                 mostrarVeterinarios();
+                
             }else{
-                alert("no se pudo eliminar el veterinario");
+                ErrorClick();
             }
 
     }
