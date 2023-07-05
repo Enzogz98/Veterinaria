@@ -20,7 +20,7 @@ const busqueda = async (req,res)=>{
     try {
         const {dato}=req.params;
         const query='select A.id,A.nomPac,A.especie,A.raza,A.edad,A.estado,concat(B.apellido," ",B.nombre) as cliente,B.dni as dniCliente from paciente A join cliente B on A.dni_duenio=B.dni where (A.nomPac like ?) order by id asc';
-        const values=[dato]
+        const values=[`${dato}%`]
         const rows = await queryDatabase(query,values)
         res.status(200).json(rows);
     } catch (error) {
@@ -47,5 +47,20 @@ const nuevoPaciente = async (req, res) => {
       });
     }
   };
+
+  const editarPaciente = async (req,res)=>{
+    try {
+        const {nombre,especie,raza,edad,estado,dni,idPaciente}=req.body;
+        const query="update paciente set nomPac=?,dni_duenio=?,especie=?,raza=?,edad=?,estado=? where id=? ";
+        const values =[nombre,dni,especie,raza,edad,estado,idPaciente];
+        const rows = await queryDatabase(query,values);
+        res.status(200).json(rows)
+    } catch (error) {
+        console.error("Error al realizar la consulta");
+        res.status(500).json({
+            error:"Error al realizar la consulta"
+        })
+    }
+  }
   
-  module.exports = { mostrarPacientes,nuevoPaciente,busqueda };
+  module.exports = { mostrarPacientes,nuevoPaciente,busqueda,editarPaciente};

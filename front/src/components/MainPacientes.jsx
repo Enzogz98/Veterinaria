@@ -17,6 +17,7 @@ const MainPacientes = () => {
     const [switchAgregar,setSwitchAgregar]=useState(3)
     const [switchEditar,setSwitchEditar]=useState(false) 
     const [inputBuscar,setBuscar]=useState("")
+    const [idPaciente,setIdPac]=useState(0)
     const handleSubmit=(e)=>{
         e.preventDefault();
         if(switchAgregar===true){
@@ -87,7 +88,8 @@ const MainPacientes = () => {
             setEdad(dato.edad);
             setEstado(dato.estado);
             setDni(dato.dniCliente);
-            setSwitchEditar(true)
+            setIdPac(dato.id);
+            setSwitchEditar(true);
             
       }
       const cancelar=()=>{
@@ -99,19 +101,45 @@ const MainPacientes = () => {
             setDni("");
             setSwitchEditar(false)
       }
-      const buscar=(e)=>{
-        setBuscar(e.target.value);
-
-      }
+      useEffect(()=>{
+        getBusqueda()
+      },[inputBuscar])
       const getBusqueda=()=>{
-          axios.get()//continuar editando
+          const url='http://localhost:3000/pacientes/';
+          const dato=inputBuscar;
+          axios.get(url+dato).then((response)=>{setDatos(response.data)})
+          
       }
+      const putEditar= async()=>{
+        try {
+          const response = await axios.put("http://localhost:3000/pacientes",{
+            nombre,
+            dni,
+            especie,
+            raza,
+            edad,
+            estado,
+            idPaciente
+          })
+          if(response.status === 200){
+            alert("se realizo la modificacion con exito");
+            mostrarPacientes();
+            cancelar();
+          } else {
+            alert("hubo un error al cargar la modificacion  los datos");
+          }
+          
+        } catch (error) {
+          console.error("Error al realizar la consulta ",error)
+        }
+      }
+      
   return (
     <>
         <div>
             <div>
-                <input onChange={(e)=>(buscar(e))} type="text" />
-                <button>Buscar</button>
+                <input onChange={(e)=>(setBuscar(e.target.value))} type="text" placeholder='Buscar'/>
+                
             </div>
             <br />
             <div>
@@ -168,7 +196,7 @@ const MainPacientes = () => {
                     {switchEditar==false?(<button type='submit'>Agregar Paciente</button>):(
                       
                       <div>
-                        <button onClick={()=>(console.log('se clickeo en editar paciente'))} >Editar Paciente</button>
+                        <button onClick={putEditar} >Editar Paciente</button>
                         <button onClick={()=>cancelar()}>Cancelar</button>
                       </div>
                     )}
@@ -191,36 +219,38 @@ const MainPacientes = () => {
                         </tr>
                     </thead>
                     <tbody>
-                        {datos.map((dato)=>(
-                          <tr key={dato.id}>
-                            <td>
-                              {dato.nomPac}
-                            </td>
-                            <td>
-                              {dato.especie}
-                            </td>
-                            <td>
-                              {dato.raza}
-                            </td>
-                            <td>
-                              {dato.edad}
-                            </td>
-                            <td>
-                              {dato.estado?"vivo":"un angel mas"}
-                            </td>
-                            <td>
-                              {dato.cliente}
-                            </td>
-                            <td>
-                              {dato.dniCliente}
-                            </td>
-                            <td>
-                              <button>Asignar Turno</button>
-
-                              <button onClick={()=>(editarPaciente(dato))}>Editar Paciente</button>
-                            </td>
-                          </tr>
-                        ))}
+                        {
+                          datos.length>0? (datos.map((dato)=>(
+                            <tr key={dato.id}>
+                              <td>
+                                {dato.nomPac}
+                              </td>
+                              <td>
+                                {dato.especie}
+                              </td>
+                              <td>
+                                {dato.raza}
+                              </td>
+                              <td>
+                                {dato.edad}
+                              </td>
+                              <td>
+                                {dato.estado?"vivo":"un angel mas"}
+                              </td>
+                              <td>
+                                {dato.cliente}
+                              </td>
+                              <td>
+                                {dato.dniCliente}
+                              </td>
+                              <td>
+                                <button>Asignar Turno</button>
+  
+                                <button onClick={()=>(editarPaciente(dato))}>Editar Paciente</button>
+                              </td>
+                            </tr>
+                          ))):<tr><td>No se encontro el nombre de la mascota 🙁</td></tr>
+                        }
                     </tbody>
                 </table>
             </div>
