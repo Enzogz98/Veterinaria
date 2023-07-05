@@ -1,6 +1,7 @@
 import axios from "axios";
 import React from "react";
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 const Usuario = () => {
   const [datos, setDatos] = useState(null);
   const [nombre,setNombre] = useState("")
@@ -13,7 +14,8 @@ const Usuario = () => {
   const [permisos,setPermisos]=useState(1)
   const [idUsuario,setIdUsuario]=useState(0)
   const [botones,setBotones]= useState(false)
-  
+  const navigate=useNavigate()
+
   
   const mostrar = async () => {
         try {
@@ -127,10 +129,42 @@ const Usuario = () => {
         .catch((error) => {
           console.error('Error al eliminar el usuario:', error);
         });
-    };    
+    }; 
+    const logOut = () => {
+      localStorage.removeItem("userData");
+      localStorage.removeItem("login");
+      navigate("/");
+    };
+    const verificar = async () => {
+      if (localStorage.getItem("login")) {
+        if (localStorage.getItem("userData")) {
+          const user = JSON.parse(localStorage.getItem("userData"));
+          console.log(user)
+          if (user && user.length > 0) {
+            if (user[0].nombreRol === "Administrador") {
+              console.log("Admin");
+            } else {
+              alert("no posee permisos para ingresar")
+              navigate("/home");
+            }
+          } else {
+            logOut();
+          }
+        } else {
+          logOut();
+        }
+      } else {
+        logOut();
+      }
+    };
+       
   useEffect(()=>{
+
+    verificar();
+    
     if(datos!==null){
         console.log(datos)
+        
     }
     else{
       mostrar()
@@ -213,6 +247,10 @@ const Usuario = () => {
       ) : (
         <p>No hay datos para mostrar</p>
       )}
+      <br />
+      <br /><br />
+      <br />
+      <button onClick={logOut}> Cerrar sesion</button>
     </>
   );
 };
