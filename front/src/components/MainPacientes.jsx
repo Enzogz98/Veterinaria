@@ -1,6 +1,7 @@
 import React from 'react'
 import { useState,useEffect } from 'react'
 import axios from 'axios'
+import { useNavigate } from 'react-router-dom';
 
 const MainPacientes = () => {
     const [nombre,setNombre]=useState("");
@@ -18,6 +19,7 @@ const MainPacientes = () => {
     const [switchEditar,setSwitchEditar]=useState(false) 
     const [inputBuscar,setBuscar]=useState("")
     const [idPaciente,setIdPac]=useState(0)
+    const navigate=useNavigate();
     const handleSubmit=(e)=>{
         e.preventDefault();
         if(switchAgregar===true){
@@ -244,7 +246,7 @@ const MainPacientes = () => {
                                 {dato.dniCliente}
                               </td>
                               <td>
-                                <button>Asignar Turno</button>
+                                <button onClick={()=>navigate('/turno')}>Asignar Turno</button>
   
                                 <button onClick={()=>(editarPaciente(dato))}>Editar Paciente</button>
                               </td>
