@@ -17,8 +17,10 @@ const [id,setIdVet]=useState(0)
 
     const handlePost = (e)=>{
         e.preventDefault();
-        console.log(nombre,apellido,dni,matricula,especialidad,horario,telefono);
-        postVeterinarios()
+        if(switchEditar==false){
+            console.log(nombre,apellido,dni,matricula,especialidad,horario,telefono);
+            postVeterinarios()
+        }
 
     }
 

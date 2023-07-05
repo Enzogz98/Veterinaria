@@ -39,6 +39,20 @@ const deleteVeterinarios= async (req,res)=>{
         console.error("Error en la consulta");
         res.status(500).json({error:"Error en la consulta"})
     }
+};
+
+const putVeterinarios = async (req,res)=>{
+    try {
+        const {nombre,apellido,dni,matricula,especialidad,horario,telefono,id}=req.body;
+        console.log("solicitud frontend -->",req.body);
+        const query="update veterinario set nombre=?,apellido=?, dni=?,matricula=?,especialidad=?,horario=?,telefono=? where id =?";
+        const values=[nombre,apellido,dni,matricula,especialidad,horario,telefono,id];
+        const rows = await queryDatabase(query,values);
+        res.status(200).json(rows)
+    } catch (error) {
+        console.error("Error en la consulta");
+        res.status(500).json({error:"Error al realizar la consulta"})
+    }
 }
 
-module.exports={postVeterinarios,mostrarVeterinarios,deleteVeterinarios}
+module.exports={postVeterinarios,mostrarVeterinarios,deleteVeterinarios,putVeterinarios}
