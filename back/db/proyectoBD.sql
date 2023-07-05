@@ -129,6 +129,30 @@ insert into perfil(id_user,img,notas,colorHeader,background,ligthDark)
  select*from cliente;
  select*from paciente;
  
+ insert into cliente (nombre,apellido,direccion,dni,telefono,cuit) values 
+ ('Juan','Sotelo','San Martin 500',34123090,'3814564544','20-34123090-1'),
+ ('Dario','Benedetto','Monteagudo 1100',24333678,'3814421264','20-24333678-7'),
+ ('Emiliano','Martinez','Ayacucho 231',19345123,'3813768945','22-19345123-7'),
+ ('Lionel','Messi','Jujuy 4000',22987654,'3816428931','20-22987654-5'),
+ ('Ricardo','Arjona','Chacabuco 120',18099122,'3814762953','20-18099122-2'),
+ ('Emanuel','Noir','Rivadavia 500',25186239,'3813057929','20-25186239-1'),
+ ('Walter','Salinas', 'España 200',30193759,'3815195349','21-30193759-3'),
+ ('Alvaro','Albornoz','Guemes 1200',39478090,'3816821901','20-39478090-2'),
+ ('Nelson','Lobo','Famailla - Famailla',40532283,'3813438063','20-40532283-1'),
+ ('Diego','Flores','Amador Lucero 500',38340246,'3816155136','20-38340246-9'),
+ ('Enzo','Gonzalez','Pje Williams 2622',41772351,'3814563507','20-41772351-0');
+ insert into paciente (nomPac,dni_duenio,especie,raza,edad,estado) values
+('Rufo',34123090,'Canino','Pitbull','2',TRUE),
+('Pio',24333678,'Ave','Pollo',1,FALSE),
+('Hulk',22987654,'Canino','Dogo de Burdeo','3',TRUE),
+('Elotro',34123090,'Ave','Tordo','1',FALSE),
+('Lobito',40532283,'Canino','Lobo Siberiano','2',TRUE),
+('Pipi',25186239,'Ave','Perico','1',TRUE),
+('Michifus',30193759,'Felino','Persa','3',TRUE),
+('Lula',39478090,'Canino','Caniche','4',TRUE),
+('Scooby',19345123,'Canino','Gran Danés','5',TRUE);
+
+ 
 select A.id,A.nomPac ,A.especie,A.raza,A.edad,A.estado,B.nombre from paciente A
 inner join cliente B on A.dni_duenio=B.dni;
 
@@ -159,6 +183,10 @@ order by id asc;
  idVet int,
  tipo varchar(50)
  );
+ 
+ insert into turnos (idPac, dniCliente, observaciones, fecha, idVet, tipo)
+ values (1, 38340246, "Perrito con malestar estomacal", "05-07-2023 1:26", 1, "consulta"); 
+ 
  
  CREATE TABLE veterinario(
  id int primary key auto_increment,
