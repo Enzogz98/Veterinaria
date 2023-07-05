@@ -207,7 +207,7 @@ const Usuario = () => {
         
         <button type="submit" onClick={agregarUsuario} disabled={botones} >Ingrese un nuevo usuario</button>
         <button type="submit" onClick={modificarUsuario} disabled = {!botones}>Editar</button>
-        <button type="submit" onClick={Cancelar} disabled={!botones}>Cancelar</button>
+        <button type="button" onClick={Cancelar} >Cancelar</button>
         <br />
         <br />
         <br />

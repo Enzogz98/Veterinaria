@@ -15,7 +15,7 @@ function App() {
       <Route path='/home' element={<Home/>}/>
       <Route path='/usuarios' element={<Usuarios/>}/>
       <Route path='/pacientes' element={<Pacientes/>}/>
-      <Route path="/turnos" component={<Turnos/>}></Route>
+      <Route path='/turnos' element={<Turnos/>}></Route>
       
     </Routes>
     </BrowserRouter>

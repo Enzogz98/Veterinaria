@@ -112,6 +112,11 @@ const MainPacientes = () => {
           axios.get(url+dato).then((response)=>{setDatos(response.data)})
           
       }
+      const transferirDatos=(paciente)=>{
+        localStorage.setItem("idPaciente", paciente.id)
+        localStorage.setItem("dniDueño", paciente.dniCliente)
+        navigate('/turnos')
+      }
       const putEditar= async()=>{
         try {
           const response = await axios.put("http://localhost:3000/pacientes",{
@@ -246,7 +251,7 @@ const MainPacientes = () => {
                                 {dato.dniCliente}
                               </td>
                               <td>
-                                <button onClick={()=>navigate('/turno')}>Asignar Turno</button>
+                                <button onClick={()=>transferirDatos(dato)}>Asignar Turno</button>
   
                                 <button onClick={()=>(editarPaciente(dato))}>Editar Paciente</button>
                               </td>
