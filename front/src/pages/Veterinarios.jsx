@@ -6,9 +6,9 @@ import Footer from '../components/Footer'
 const Veterinarios = () => {
   return (
     <>
-        {/* <Header/> */}
+        <Header/>
         <MainVeterinarios/>
-        {/* <Footer/> */}
+        <Footer/>
     </>
   )
 }

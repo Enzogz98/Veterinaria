@@ -1,6 +1,8 @@
 import React from 'react'
 import axios from 'axios'
 import { useEffect,useState } from 'react'
+import "../css/MainVeterinarios.css"
+
 const MainVeterinarios = () => {
     
 const [nombre,setNombre]=useState("")
@@ -13,6 +15,7 @@ const [telefono,setTelefono]=useState("")
 const [datos,setDatos]=useState([]);
 const [switchEditar,setSwitchEditar]=useState(false)
 const [id,setIdVet]=useState(0)
+
 
 
     const handlePost = (e)=>{
@@ -111,7 +114,7 @@ const [id,setIdVet]=useState(0)
 
   return (
     <>
-        <div>
+        <div className='contenedor-veterinario'>
             {switchEditar==false?(<h4>Agregar Veterinario</h4>):(<h4>Editar Veterinario</h4>)}
             <form onSubmit={handlePost}>
                 <label >Nombre:</label>
