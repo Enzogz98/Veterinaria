@@ -14,10 +14,10 @@ const mostrarProductos = async (req, res)=>{
 
 const agregarProductos = async (req,res)=>{
     try{
-       const {nombre,descripcion,precio,stock,url} = req.body;
+       const {idProvedor, nombre, descripcion, precio, stock, url} = req.body;
        console.log("solicitud front end ----->", req.body)
-       const query = "INSERT INTO productos(nombre, descripcion, precio, stock, url) VALUES (?,?,?,?,?)";
-       const values = [nombre,descripcion,precio,stock,url];
+       const query = "INSERT INTO productos(idProvedor,nombre, descripcion, precio, stock, url) VALUES (?,?,?,?,?,?)";
+       const values = [idProvedor, nombre, descripcion, precio, stock, url];
        const rows = await queryDatabase(query, values);
        res.status(200).json(rows);
     }catch (error){
@@ -28,10 +28,10 @@ const agregarProductos = async (req,res)=>{
 
 const editarProducto = async (req,res)=>{
     try{
-        const {nombre,descripcion,precio,stock,url,id} = req.body;
+        const {id,idProvedor, nombre, descripcion, precio, stock, url} = req.body;
         console.log("solicitud front end -------->", req.body)
-        const query = "UPDATE productos SET nombre = ?, descripcion = ?, precio = ?, stock = ?, url = ? WHERE id = ?";
-        const values = [nombre,descripcion,precio,stock,url, id];
+        const query = "UPDATE productos SET idProvedor=?, nombre = ?, descripcion = ?, precio = ?, stock = ?, url = ? WHERE id = ?";
+        const values = [idProvedor,nombre,descripcion,precio,stock,url, id];
         const rows = await queryDatabase(query,values);
         res.status(200).json(rows);
 
@@ -41,19 +41,19 @@ const editarProducto = async (req,res)=>{
     }
 }
 
-const deleteProducto = async (req,res) =>{
-    try{
+const deleteProducto= async (req,res)=>{
+    try {
         const id=req.params.id;
-        console.log("solicitud front end ---->",id);
-        const query = 'delete from productos where id=?';
-        const values = [id];
+        console.log('solicitud frontend -->',id);
+        const query='delete from productos where id = ?';
+        const values=[id]
         const rows = await queryDatabase(query,values);
-        res.status(200).json(rows);
+        res.status(200).json(rows)
 
-    }catch(error){
-        console.error("Error al realizar la consulta");
-        res.status(500).json({error : "Error al realizar la consulta"});
+    } catch (error) {
+        console.error("Error en la consulta");
+        res.status(500).json({error:"Error en la consulta"})
     }
-}
+};
 
 module.exports = {mostrarProductos,agregarProductos, editarProducto, deleteProducto}

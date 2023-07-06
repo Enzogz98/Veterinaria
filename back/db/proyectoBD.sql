@@ -228,32 +228,17 @@ order by id asc;
   tipo='Consulta'
   WHERE id=1;
   DELETE FROM turnos WHERE id =3;
-
-
-
-CREATE TABLE productos (
+  
+  
+ CREATE TABLE productos (
     id INT PRIMARY KEY,
+    idProvedor int,
     nombre VARCHAR(100),
     descripcion VARCHAR(255),
     precio DECIMAL(10, 2),
     stock INT,
     url VARCHAR(255)
 );
-
-INSERT INTO productos (id, nombre, descripcion, precio, stock, url)
-VALUES
-    (1, 'Alimento para perros', 'Alimento balanceado para perros de todas las razas', 25.99, 50, 'https://http2.mlstatic.com/D_NQ_NP_782837-MLA49211676866_022022-O.webp'),
-    (2, 'Collar antipulgas', 'Collar ajustable que previene la infestación de pulgas en perros y gatos', 12.50, 100, 'https://traviesospetshop.com.ar/wp-content/uploads/2021/12/Canvas-WooCommerce.png'),
-    (3, 'Shampoo para gatos', 'Shampoo suave y sin irritaciones para la higiene de gatos', 8.99, 30, 'https://naricitas.pet/wp-content/uploads/2022/04/Bio-Shampoo-Gato-Dermatologico-Sachet-30-ml.jpg'),
-    (4, 'Juguete interactivo para perros', 'Juguete duradero y seguro para mantener a los perros entretenidos', 15.75, 20, 'https://d3ugyf2ht6aenh.cloudfront.net/stores/880/994/products/smart-515811-8d99b6a5403786a74415417011979052-640-0.png'),
-    (5, 'Medicamento antiparasitario', 'Medicamento oral para el control de parásitos internos en perros y gatos', 18.50, 60, 'https://f.fcdn.app/imgs/533298/eltunel.com.uy/tuneuy/b1cc/original/catalogo/04310404-04310404_1/400x400/helmiben-suspension-10-ml-helmiben-suspension-10-ml.jpg'),
-    (6, 'Cama para mascotas', 'Cama cómoda y acolchada para perros y gatos de todos los tamaños', 30.99, 10, 'https://d2r9epyceweg5n.cloudfront.net/stores/001/885/956/products/20220506_1859031-55e25abc72ba6b537316541219663552-1024-1024.jpg'),
-    (7, 'Snacks para perros', 'Deliciosos snacks naturales para premiar a tu perro durante el entrenamiento', 5.99, 80, 'https://www.purina.es/sites/default/files/2021-11/4000487224889_1%20front%20pack.jpg'),
-    (8, 'Collar con placa de identificación', 'Collar resistente con placa grabada para identificar a tu mascota', 9.50, 50, 'https://us.123rf.com/450wm/pixelrobot/pixelrobot1907/pixelrobot190700097/127058766-collar-de-perro-rojo-con-placa-de-identificaci%C3%B3n-de-oro-aislado-en-blanco.jpg'),
-    (9, 'Arena sanitaria para gatos', 'Arena absorbente para mantener la higiene de los gatos', 7.25, 40, 'https://www.patasarriba.cl/wp-content/uploads/2022/10/arena500x500.jpeg'),
-    (10, 'Juguete con catnip', 'Juguete relleno de catnip para gatos, estimula su instinto de caza', 6.99, 25, 'https://http2.mlstatic.com/D_NQ_NP_633778-MLA49999542422_052022-O.webp');
-
-
 
 
 ALTER TABLE perfil
@@ -279,4 +264,26 @@ nomEmpresa varchar(50),
 telefono varchar(50),
 direccion varchar(50),
 rubro varchar(50)
-)
+);
+
+insert into proveedores (nomEmpresa, telefono, direccion, rubro)
+values("Dog Chow", "3887557455", "mate de luna 2244", "Alimentos para Mascotas");
+insert into proveedores (nomEmpresa, telefono, direccion, rubro)
+values("Eukan", "38144475", "Colon 2500", "Articulos varios");
+INSERT INTO productos (id,idProvedor, nombre, descripcion, precio, stock, url)
+VALUES
+    (1,1, 'Alimento para perros', 'Alimento balanceado para perros de todas las razas', 25.99, 50, 'https://http2.mlstatic.com/D_NQ_NP_782837-MLA49211676866_022022-O.webp'),
+    (2,2, 'Collar antipulgas', 'Collar ajustable que previene la infestación de pulgas en perros y gatos', 12.50, 100, 'https://traviesospetshop.com.ar/wp-content/uploads/2021/12/Canvas-WooCommerce.png'),
+    (3,1, 'Shampoo para gatos', 'Shampoo suave y sin irritaciones para la higiene de gatos', 8.99, 30, 'https://naricitas.pet/wp-content/uploads/2022/04/Bio-Shampoo-Gato-Dermatologico-Sachet-30-ml.jpg'),
+    (4,2, 'Juguete interactivo para perros', 'Juguete duradero y seguro para mantener a los perros entretenidos', 15.75, 20, 'https://d3ugyf2ht6aenh.cloudfront.net/stores/880/994/products/smart-515811-8d99b6a5403786a74415417011979052-640-0.png'),
+    (5,1, 'Medicamento antiparasitario', 'Medicamento oral para el control de parásitos internos en perros y gatos', 18.50, 60, 'https://f.fcdn.app/imgs/533298/eltunel.com.uy/tuneuy/b1cc/original/catalogo/04310404-04310404_1/400x400/helmiben-suspension-10-ml-helmiben-suspension-10-ml.jpg'),
+    (6,2, 'Cama para mascotas', 'Cama cómoda y acolchada para perros y gatos de todos los tamaños', 30.99, 10, 'https://d2r9epyceweg5n.cloudfront.net/stores/001/885/956/products/20220506_1859031-55e25abc72ba6b537316541219663552-1024-1024.jpg'),
+    (7,1, 'Snacks para perros', 'Deliciosos snacks naturales para premiar a tu perro durante el entrenamiento', 5.99, 80, 'https://www.purina.es/sites/default/files/2021-11/4000487224889_1%20front%20pack.jpg'),
+    (8,2, 'Collar con placa de identificación', 'Collar resistente con placa grabada para identificar a tu mascota', 9.50, 50, 'https://us.123rf.com/450wm/pixelrobot/pixelrobot1907/pixelrobot190700097/127058766-collar-de-perro-rojo-con-placa-de-identificaci%C3%B3n-de-oro-aislado-en-blanco.jpg'),
+    (9,1, 'Arena sanitaria para gatos', 'Arena absorbente para mantener la higiene de los gatos', 7.25, 40, 'https://www.patasarriba.cl/wp-content/uploads/2022/10/arena500x500.jpeg'),
+    (10,2, 'Juguete con catnip', 'Juguete relleno de catnip para gatos, estimula su instinto de caza', 6.99, 25, 'https://http2.mlstatic.com/D_NQ_NP_633778-MLA49999542422_052022-O.webp');
+ALTER TABLE productos
+ADD CONSTRAINT fk_producto_proveedores
+FOREIGN KEY (idProvedor)
+REFERENCES proveedores (id)
+ON DELETE CASCADE;
