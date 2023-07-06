@@ -98,6 +98,19 @@ const editarUsuario = async (req, res)=> {
         res.status(500).json({error:'error al realizar la consulta'})
     }
 }
+const cambioContraseña = async (req,res)=>{
+    try{
+        const {passNueva,idUsuario}=req.body
+        console.log("solicitud frontend -->", req.body)
+        const query= 'UPDATE usuario SET pass=? WHERE id=?'
+        const values=[passNueva,idUsuario]
+        const rows = await queryDatabase(query,values)
+        res.status(200).json(rows)
+    }catch(error){
+        console.error('Error al realizar la consulta')
+        res.status(500).json({error:'error al realizar la consulta'})
+    }
+}
 const mostrarUno = (req,res)=>{
     const idUsuario=req.params.id
     connection.query('SELECT * FROM usuario WHERE id=?',idUsuario,
@@ -112,4 +125,4 @@ const mostrarUno = (req,res)=>{
     )
 
 }
-module.exports={mostrar, login, nuevoUsuario,editarUsuario,eliminarUsuario, mostrarUno}
+module.exports={mostrar, login, nuevoUsuario,editarUsuario,eliminarUsuario, mostrarUno,cambioContraseña}
