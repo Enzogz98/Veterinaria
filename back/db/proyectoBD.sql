@@ -271,3 +271,11 @@ END //
 DELIMITER ;   
 
 select * from perfil;
+
+create table proveedores(
+id int primary key auto_increment,
+nomEmpresa varchar(50),
+telefono varchar(50),
+direccion varchar(50),
+rubro varchar(50)
+)
