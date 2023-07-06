@@ -71,12 +71,10 @@ const MainHome = () => {
         if (localStorage.getItem("userData")) {
           const userData = JSON.parse(localStorage.getItem("userData"));
           setStoreData(userData);
+          console.log(userData)
           if (userData.length > 0) {
             setId_u(userData[0].id);
           }
-
-          // storeData.map(dato=>(console.log(dato.id)))
-          //console.log(id_u)
         } else {
           setStoreData([]);
         }
@@ -95,6 +93,7 @@ const MainHome = () => {
         });
         if (response.status === 200) {
           setPerfil(response.data);
+          // enviar a local storage lo datos de perfil
         } else {
           console.error("Error en la respuesta");
         }
@@ -122,6 +121,7 @@ const MainHome = () => {
       perfil();
       cargarTabla();
     }
+    
   }, [id_u, recargar]);
 
   useEffect(() => {
@@ -211,10 +211,6 @@ const MainHome = () => {
       console.log("se ejecuto un delete");
     }
   }, [tabla]);
-
-  // console.log(storeData);
-  // console.log(datoPerfil);
-
   const logOut = () => {
     localStorage.removeItem("userData");
     localStorage.removeItem("login");
@@ -224,8 +220,6 @@ const MainHome = () => {
   const tareaController = (e) => {
     e.preventDefault();
     if (editar !== true) {
-      //post
-
       setTabla(1);
       console.log("se hizo un post");
     } else {

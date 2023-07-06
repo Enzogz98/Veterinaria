@@ -8,20 +8,86 @@ import { Link } from "react-router-dom";
 import "../css/Header.css";
 import NavDropdown from "react-bootstrap/NavDropdown";
 import { useNavigate } from "react-router-dom";
-import { useRef, useState } from "react";
+import { useState , useRef, useEffect } from "react";
+import axios from "axios";
 
-const logOut = () => {
-  // localStorage.removeItem("userData");
-  // localStorage.removeItem("login");
-  navigate("/");
-};
+
+
+
+
+
+
+
+
+
 
 const Header = () => {
+  const [storeData, setStoreData] = useState();
+  const [id_u, setId_u] = useState(0);
+  //const [datoPerfil, setPerfil] = useState();
   const navigate = useNavigate();
-  const Menus = ["Profile", "YourApp", "settings"];
+  const Menus = [{to:"/perfil/",name:"Editar Perfil"},{to:"/editarUsuario",name:"Cambiar Contraseña"}];
   const [open, setOpen] = useState(false);
   const menuRef = useRef();
   const imgRef = useRef();
+  const [datos,setDatos]=useState([]);
+  const [id_perfil,setPerfilId]=useState(0)
+
+  const logOut = () => {
+    localStorage.removeItem("userData");
+    localStorage.removeItem("login");
+    navigate("/");
+  };
+
+  useEffect(() => {
+    const fetchData = async () => {
+      if (localStorage.getItem("login")) {
+        if (localStorage.getItem("userData")) {
+          const userData = JSON.parse(localStorage.getItem("userData"));
+          setStoreData(userData);
+          console.log(userData)
+          console.log(storeData)
+          if (userData.length > 0) {
+            setId_u(userData[0].id);
+            console.log(id_u)
+            
+          }
+        } else {
+          setStoreData([]);
+        }
+      } else {
+        logOut();
+      }
+    };
+    fetchData();
+    
+  }, []);
+
+  useEffect(()=>{
+    getPerfil()
+  },[id_u])
+
+  const getPerfil = async () =>{
+        try {
+          const url="http://localhost:3000/perfil/";
+          const id=id_u;
+          const response = await axios.get(url+id);
+          if (response.status === 200){
+            setDatos(response.data)
+            console.log(datos)
+          }else{
+            console.error("Error al leer los datos")
+          }
+        } catch (error) {
+          console.error("Error en la consulta",error)
+
+        }
+  }
+  
+const seter= (idP)=>{
+  setOpen(!open)
+  setPerfilId(idP)
+}
 
   return (
     <>
@@ -64,21 +130,26 @@ const Header = () => {
 
                 <div className="contenedor-dropdown">
                   <div className="contenedor-img-dropdown">
-                    <img
-                      src={perfil}
+                    {datos.map((dato)=>(<img key={dato.id}
+                      src={dato.img}
                       alt="perfil"
                       className="header-image3"
-                      onClick={() => setOpen(!open)}
+                      onClick={() => seter(dato.id)}
                       ref={imgRef}
-                    />
+                      
+                    />))}
                   </div>
 
                   {open && (
                     <div className="dropdown" ref={menuRef}>
+                      {storeData.map((dato) =>(
+                        <p> {dato.nombre} {dato.apellido} </p>
+                      ))}
+                      
                       {Menus.map((menu) => (
-                        <p className="li-dropdown" onClick={() => setOpen(false)}>
-                          {menu}
-                        </p>
+                        <button className="li-dropdown" onClick={() => setOpen(false)}>
+                          <Link to={menu.to+id_perfil}> <p>{menu.name}</p></Link>
+                        </button>
                       ))}
                       <button onClick={logOut}>logout</button>
                     </div>

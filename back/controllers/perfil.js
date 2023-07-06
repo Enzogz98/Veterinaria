@@ -24,5 +24,18 @@ const perfil = async (req,res)=>{
         res.status(500).json({error:'Error al realizar la consulta'})
     }
 }
+const getPerfil= async (req,res) =>{
+    try {
+        const {id} = req.params;
+        console.log('solicitud frontend -->',req.params)
+        const query='select * from perfil where id=?';
+        const values=[id];
+        const rows= await queryDatabase(query,values);
+        res.status(200).json(rows);
+    } catch (error) {
+        console.error("Error en la consulta");
+        res.status(500).json("Error en la consulta")
+    }
+}
 
-module.exports={perfil}
+module.exports={perfil,getPerfil}
