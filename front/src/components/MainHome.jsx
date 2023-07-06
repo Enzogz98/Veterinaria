@@ -4,6 +4,7 @@ import { TfiRuler } from "react-icons/tfi";
 import { useNavigate } from "react-router-dom";
 import img from "../assets/nota2.png";
 import "../css/MainHome.css";
+import { enqueueSnackbar } from "notistack";
 
 //modificar la contante main home para que reciba la props que le envio el componente padre, 
 //crear una funcion que llame a esa funcion y envie por parametro los datos que recupera (dato perfil)
@@ -24,6 +25,45 @@ const MainHome = () => {
   const [descripcion, setDescripcion] = useState("");
   const [fecha, setFecha] = useState("");
   const [prioridad, setPrioridad] = useState("3");
+
+
+  const sucessClick = (dato) => {
+    if(dato==1){
+        enqueueSnackbar("Perfecto se Registro la nueva tarea ! 😉", {
+            variant: "success",
+            anchorOrigin: {
+              vertical: "top",
+              horizontal: "left",
+            },
+        })
+    } else if (dato==2){
+        enqueueSnackbar("Recibi los cambios en las tareas ! 👌", {
+            variant: "success",
+            anchorOrigin: {
+              vertical: "top",
+              horizontal: "left",
+            },
+        })
+    } else {
+        enqueueSnackbar("Se ELimino la tarea ! 🗑", {
+            variant: "error",
+            anchorOrigin: {
+              vertical: "top",
+              horizontal: "left",
+            },
+        })
+    }
+    };
+    const ErrorClick = () => {
+        enqueueSnackbar("Algo salio mal !!! 🤖", {
+            variant: "error",
+            anchorOrigin: {
+              vertical: "top",
+              horizontal: "right",
+            },
+        })
+    }
+
 
   useEffect(() => {
     const fetchData = async () => {
@@ -99,14 +139,15 @@ const MainHome = () => {
           prioridad,
         });
         if (response.status === 200) {
-          alert("se cargo con exito la nueva tarea");
+          sucessClick(1)
           setRecargar(recargar + 1);
           setTabla(0);
           console.log(tabla);
         } else {
-          alert("hubo un error al cargar los datos");
+          ErrorClick();
         }
       } catch (error) {
+        ErrorClick();
         console.error("Error al realizar la consulta con el servidor ", error);
       }
     };
@@ -122,14 +163,15 @@ const MainHome = () => {
           prioridad,
         });
         if (response.status === 200) {
-          alert("se Edito con exito la tarea");
+          sucessClick(2)
           setRecargar(recargar + 1);
           setTabla(0);
           offEditar();
         } else {
-          alert("hubo un error al guardar la edicion de los datos");
+          ErrorClick();
         }
       } catch (error) {
+        ErrorClick();
         console.error("Error al realizar la consulta con el servidor", error);
       }
     };
@@ -142,15 +184,16 @@ const MainHome = () => {
         );
 
         if (response.status === 200) {
-          alert("se Elimino con exito la tarea");
+          sucessClick(3);
           console.log(idTarea);
           setRecargar(recargar + 1);
           setTabla(0);
           offEditar();
         } else {
-          alert("hubo un error al Eliminar los datos");
+          ErrorClick()
         }
       } catch (error) {
+        ErrorClick();
         console.error("Error al realizar la consulta con el servidor", error);
       }
     };

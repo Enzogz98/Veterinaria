@@ -1,6 +1,45 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
+import { enqueueSnackbar } from "notistack";
+
+const sucessClick = (dato) => {
+    if(dato==1){
+        enqueueSnackbar("se Registro el Turno ! 😉📋", {
+            variant: "success",
+            anchorOrigin: {
+              vertical: "top",
+              horizontal: "left",
+            },
+        })
+    } else if (dato==2){
+        enqueueSnackbar("Guardamos la Modificacion del turno ! 👌📝", {
+            variant: "success",
+            anchorOrigin: {
+              vertical: "top",
+              horizontal: "left",
+            },
+        })
+    } else {
+        enqueueSnackbar("Se Cancelo el Turno ! 📋🗑", {
+            variant: "error",
+            anchorOrigin: {
+              vertical: "top",
+              horizontal: "left",
+            },
+        })
+    }
+    };
+    const ErrorClick = () => {
+        enqueueSnackbar("Algo salio mal !!! 🤖", {
+            variant: "error",
+            anchorOrigin: {
+              vertical: "top",
+              horizontal: "right",
+            },
+        })
+    }
+
 
 const MainTurnos = () => {
     const [datos,setDatos]=useState(null)
@@ -34,15 +73,16 @@ const MainTurnos = () => {
                 tipo
             })
             if(response.status===200){
-                alert("Se agregó correctamente el turno")
+                sucessClick(1)
                 mostrarTurnos()
                 localStorage.removeItem("idPaciente")
                 localStorage.removeItem("dniDueño")
             }else{
-                alert("hubo un error en la carga de datos")
+                ErrorClick()
             }
         }catch(error){
             console.error("Error al consultar con el servidor"+error)
+            ErrorClick()
         }
     }
 
@@ -70,14 +110,15 @@ const MainTurnos = () => {
                 id
             })
             if(response.status===200){
-                alert("Se modificó el turno correctamente")
+                sucessClick(2)
                 mostrarTurnos()
             }
             else{
-                alert("error en la modificación de datos")
+                ErrorClick()
             }
         }catch(error){
             console.error("Error al consultar con el servidor"+error)
+            ErrorClick()
         }
     }
 
@@ -85,14 +126,15 @@ const MainTurnos = () => {
         axios.delete(`http://localhost:3000/turnos/delete/`+turno.id)
         .then((response)=>{
             if(response.status===200){
-                alert("El turno se canceló correctamente")
+                sucessClick(3)
                 mostrarTurnos()
             }else{
-                alert("no pudo cancelarse el turno")
+                ErrorClick()
             }
         })
         .catch((error)=>{
-           console.error("error al cancelar el turno", error) 
+           console.error("error al cancelar el turno", error)
+           ErrorClick() 
         })
     }
     const limpiar=()=>{
@@ -147,8 +189,8 @@ const MainTurnos = () => {
     <label htmlFor="">Ingrese el motivo de la consulta</label>
     <input type="text" value={tipo} onChange={(e)=>setTipo(e.target.value)} />
     <br />
-    <button type="submit" onClick={agregarTurno} disabled={botones}>Agregue el nuevo turno</button>
-    <button type='submit' onClick={modificarTurno} disabled={!botones}>Agregar cambios al turno</button>
+    <button type="button" onClick={agregarTurno} disabled={botones}>Agregue el nuevo turno</button>
+    <button type='button' onClick={modificarTurno} disabled={!botones}>Agregar cambios al turno</button>
     <button type='button' onClick={limpiar}>Cancelar</button>
 
    </form>

@@ -5,6 +5,46 @@ import axios from "axios";
 import "../css/MainPacientes.css";
 import { BiSearchAlt } from "react-icons/bi";
 import { useNavigate } from 'react-router-dom';
+import { enqueueSnackbar } from "notistack";
+
+
+const sucessClick = (dato) => {
+  if(dato==1){
+      enqueueSnackbar("Se Registro el nuevo Paciente  ! 🐶🐱", {
+          variant: "success",
+          anchorOrigin: {
+            vertical: "top",
+            horizontal: "left",
+          },
+      })
+  } else if (dato==2){
+      enqueueSnackbar("Se Editaron los datos del Paciente ! 🦍 ", {
+          variant: "success",
+          anchorOrigin: {
+            vertical: "top",
+            horizontal: "left",
+          },
+      })
+  } else if(dato==3) {
+    enqueueSnackbar("Se Registro el nuevo Cliente  ! 🪪 ", {
+      variant: "success",
+      anchorOrigin: {
+        vertical: "top",
+        horizontal: "left",
+      },
+      })
+  }
+  };
+  const ErrorClick = () => {
+      enqueueSnackbar("Algo salio mal !!! 🤖", {
+          variant: "error",
+          anchorOrigin: {
+            vertical: "top",
+            horizontal: "right",
+          },
+      })
+  }
+
 
 const MainPacientes = () => {
   const [nombre,setNombre]=useState("");
@@ -59,11 +99,12 @@ const MainPacientes = () => {
         cuit,
       });
       if (response.status === 200) {
-        alert("se cargo con exito el nuevo cliente");
+        sucessClick(3)
       } else {
-        alert("hubo un error al cargar los datos");
+        ErrorClick()
       }
     } catch (error) {
+      ErrorClick()
       console.error("Error al realizar la consulta con el servidor ", error);
     }
   };
@@ -79,7 +120,7 @@ const MainPacientes = () => {
         estado,
       });
       if (response.status === 200) {
-        alert("se cargo con exito el nuevo paciente");
+        sucessClick(1)
         mostrarPacientes();
       } else {
         alert("hubo un error al cargar los datos");
@@ -98,6 +139,7 @@ const MainPacientes = () => {
     setDni(dato.dniCliente);
     setIdPac(dato.id);
     setSwitchEditar(true);
+
   };
 
   const cancelar = () => {
@@ -133,15 +175,15 @@ const MainPacientes = () => {
         idPaciente
       })
       if(response.status === 200){
-        alert("se realizo la modificacion con exito");
+        sucessClick(2)
         mostrarPacientes();
         cancelar();
       } else {
-        alert("hubo un error al cargar la modificacion  los datos");
+        ErrorClick()
       }
       
     } catch (error) {
-      console.error("Error al realizar la consulta ",error)
+      ErrorClick()
     }
   }
 
@@ -189,6 +231,7 @@ const MainPacientes = () => {
               {" "}
               {/* Agregar nuevo Cliente */}
               <form onSubmit={handleSubmit}>
+                
                 <h4>Agregar Cliente</h4>
                 <br />
                 <label htmlFor="">Nombre:</label>
@@ -226,7 +269,7 @@ const MainPacientes = () => {
               {" "}
               {/* Agregar nuevo Paciente */}
               <form onSubmit={handleSubmit}>
-                <h4>Agregar Paciente</h4>
+              {switchEditar == false ?(<h4>Agregar Paciente</h4>):(<h4>Editar Paciente</h4>)}
                 <br />
                 <label htmlFor="">Nombre:</label>
                 <input

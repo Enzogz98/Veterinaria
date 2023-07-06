@@ -7,6 +7,39 @@ import "../css/MainLogin.css";
 import { TfiEmail, TfiLock } from "react-icons/tfi";
 import { VscEye,VscEyeClosed } from "react-icons/vsc";
 
+
+import { enqueueSnackbar } from "notistack";
+
+
+const sucessClick = (dato) => {
+  if (dato==1){
+      enqueueSnackbar("Nick/Email o Pass Invalido  ! 👨🏿‍🦽 ", {
+          variant: "error",
+          anchorOrigin: {
+            vertical: "top",
+            horizontal: "left",
+          },
+      })
+  } else {
+      enqueueSnackbar("Se ELimino el Usuario ! ☠️ ", {
+          variant: "error",
+          anchorOrigin: {
+            vertical: "top",
+            horizontal: "left",
+          },
+      })
+  }
+  };
+  const ErrorClick = () => {
+      enqueueSnackbar("Algo salio mal !!! 🤖", {
+          variant: "error",
+          anchorOrigin: {
+            vertical: "top",
+            horizontal: "right",
+          },
+      })
+  }
+
 const MainLogin = () => {
   const [nickEmail, setNickEmail] = useState("");
   const [pass, setPass] = useState("");
@@ -26,11 +59,11 @@ const MainLogin = () => {
             localStorage.setItem("login", true);
             navigate("/home");
           }else{
-            alert("usuario dado de baja ! :C")
+            sucessClick(3)
           }
         });
       } else {
-        alert("usuario o pass erroneo/inexistente");
+        sucessClick(1)
       }
     }
   }, [data]);
@@ -45,9 +78,11 @@ const MainLogin = () => {
         setData(response.data);
       } else {
         console.error("Error en la respuesta");
+        ErrorClick()
       }
     } catch (error) {
       console.error("Error al realizar la peticion: ", error);
+      ErrorClick()
     }
   };
 
