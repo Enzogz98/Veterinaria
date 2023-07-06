@@ -96,7 +96,7 @@ const seter= (idP)=>{
           <Container>
             <div className="contenedor-brand">
               <Navbar.Brand
-                onClick={() => (alert("redirigir a home"), navigate("/home"))}
+                onClick={() => (navigate("/home"))}
               >
                 <img src={huella} alt="logo" className="header-image1" />
                 <img src={titulo} alt="titulo" className="header-image2" />

@@ -38,4 +38,18 @@ const getPerfil= async (req,res) =>{
     }
 }
 
-module.exports={perfil,getPerfil}
+const putPerfil= async (req,res) =>{
+    try {
+        const {img,color,back,oscuro,idPerfil}=req.body;
+        console.log("solicitud frontend --->",req.body);
+        const query='update perfil set img=?,colorHeader=?,background=?,ligthDark=? where id=?';
+        const values=[img,color,back,oscuro,idPerfil];
+        const rows = await queryDatabase(query,values);
+        res.status(200).json(rows);
+    } catch (error) {
+        console.error("Error en la consulta")
+        res.status(500).json({error:"Error en la consutla"})
+    }
+}
+
+module.exports={perfil,getPerfil,putPerfil}
