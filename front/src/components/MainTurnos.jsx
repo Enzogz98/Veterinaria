@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
 import { enqueueSnackbar } from "notistack";
+import "../css/MainTurnos.css";
 
 const sucessClick = (dato) => {
     if(dato==1){
@@ -170,7 +171,10 @@ const MainTurnos = () => {
 
   return (
    <> 
-   <form action="">
+
+   <div className='contenedor-paciente'>
+   <form action="" className='form-registro-paciente'>
+    <h4>Turnos</h4>
     <label htmlFor="">Ingrese el id del paciente</label>
     <input type="number" value={idPac} onChange={(e)=>setIdPac(e.target.value)} />
     <br />
@@ -189,16 +193,21 @@ const MainTurnos = () => {
     <label htmlFor="">Ingrese el motivo de la consulta</label>
     <input type="text" value={tipo} onChange={(e)=>setTipo(e.target.value)} />
     <br />
-    <button type="button" onClick={agregarTurno} disabled={botones}>Agregue el nuevo turno</button>
-    <button type='button' onClick={modificarTurno} disabled={!botones}>Agregar cambios al turno</button>
-    <button type='button' onClick={limpiar}>Cancelar</button>
 
+    <div className='contenedor-botones'>
+    <button type="button" onClick={agregarTurno} disabled={botones} className='btnpaciente'>Agregue el nuevo turno</button>
+    <div>
+    <button type='button' onClick={modificarTurno} disabled={!botones} className='btnpaciente'>Agregar cambios al turno</button>
+    <button type='button' onClick={limpiar} className='btnpaciente'>Cancelar</button>
+
+    </div>
+    
+    </div>
+   
    </form>
-   <br />
-   <br />
-   <br />
-   <br />
-   {datos!==null?(
+
+<div className='contenedor-tabla-paciente'>
+{datos!==null?(
     <table>
         <thead>
             <tr>
@@ -219,8 +228,10 @@ const MainTurnos = () => {
                 <td>{obj.fecha}</td>
                 <td>{obj.idVet}</td>
                 <td>{obj.tipo}</td>
-                <td><button onClick={()=>cancelarTurno(obj)}>Cancelar Turno</button></td>
-                <td><button onClick={()=>edicion(obj)}>Modificar Turno</button></td>
+                <td>
+                    <button onClick={()=>cancelarTurno(obj)} className='cancelar'>Cancelar Turno</button>
+                    <button onClick={()=>edicion(obj)} className='modificar'>Modificar Turno</button>
+                </td>
                 </tr>
             ))}
         </tbody>
@@ -228,10 +239,13 @@ const MainTurnos = () => {
    ):(
     <p>No hay datos para mostrar</p>
    )}
+    
 
-   <br />
-   <br /><br />
-   <button onClick={()=>navigate('/Home')}>Volver a Home</button>
+</div>
+  
+   </div>
+  
+   <button onClick={()=>navigate('/Home')} className='boton-cerrarSesion'>Volver a Home</button>
    
    </>
   )

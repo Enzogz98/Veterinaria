@@ -1,9 +1,10 @@
 .footer-container{
     backdrop-filter: blur(10px) ;
-    background: url('../assets/bgr.login.jpg') no-repeat center fixed;
+    background: url('../assets/fondo-login.jpg') no-repeat center fixed;
     background-size: cover;
     text-indent: 20px;
     font-family: 'Quicksand', sans-serif;
+    font-weight: bold;
     
 
 }
@@ -13,16 +14,21 @@
 }
 
 .direccion{
-    color:aliceblue;
+    color:rgb(0, 0, 0);
     display: flex;
     justify-content: center;
     align-items: center;
+
     
+}
+
+.direccion h5,h6{
+    font-weight: bold;
 }
 
 .Redes{
 display:flex;
-color:aliceblue;
+color:rgb(0, 0, 0);
 justify-content: center;
 flex-direction: column;
 align-items: center;
@@ -52,6 +58,6 @@ text-align: center;
 }
 
 .icono-1, .icono-2, .icono-3{
-    color: rgba(240, 248, 255, 0.658);
+    color: rgba(0, 0, 0, 0.911);
     
 }

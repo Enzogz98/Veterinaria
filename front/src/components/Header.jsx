@@ -109,23 +109,30 @@ const seter= (idP)=>{
               <Nav className="ml-auto">
                 <div className="nav-contenedor">
 
-                  <Nav.Link className="nav-link">
-                    <Link to='/usuarios'> <p>Usuarios</p></Link>
+                  <Nav.Link >
+                    <Link to='/usuarios' className="nav-link"> <p>Usuarios</p></Link>
                    
                   </Nav.Link>
-                  <Nav.Link className="nav-link">
-                    <Link to='/pacientes'> <p>Pacientes</p></Link>
+                  <Nav.Link >
+                    <Link to='/pacientes' className="nav-link"> <p>Pacientes</p></Link>
                    
                   </Nav.Link>
-                  <Nav.Link  className="nav-link">
-                    <Link to='/turnos'><p>Turnos</p>
+                  <Nav.Link  >
+                    <Link to='/turnos' className="nav-link"><p>Turnos</p>
                     </Link>
-
-                  </Nav.Link>
-                  <Nav.Link  className="nav-link">
-                    <Link to='/ventas'> <p>Ventas</p> </Link>
                     
                   </Nav.Link>
+                  <Nav.Link  >
+                    <Link to='/Venta' className="nav-link"><p>Ventas</p>
+                    </Link>
+                    
+                  </Nav.Link>
+                  <Nav.Link  >
+                    <Link to='/Veterinarios' className="nav-link"><p>Veterinarios</p>
+                    </Link>
+                    
+                  </Nav.Link>
+                    
                 </div>
 
                 <div className="contenedor-dropdown">
