@@ -139,6 +139,8 @@ const MainPacientes = () => {
     setDni(dato.dniCliente);
     setIdPac(dato.id);
     setSwitchEditar(true);
+    document.getElementById("agregar-paciente").style.display = "block";
+    document.getElementById("agregar-cliente").style.display = "none";
 
   };
 
@@ -178,6 +180,7 @@ const MainPacientes = () => {
         sucessClick(2)
         mostrarPacientes();
         cancelar();
+       
       } else {
         ErrorClick()
       }
@@ -205,6 +208,8 @@ const MainPacientes = () => {
     document.getElementById("agregar-cliente").style.display = "none";
     setSwitchAgregar(false);
   };
+
+  
 
   return (
     <>

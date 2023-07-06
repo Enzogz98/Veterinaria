@@ -1,11 +1,10 @@
-.contenedor-veterinario{
+.contenedor-paciente{
     display: flex;
-    margin-bottom: 50px;
+
 }
 
-.registro-veterinario{
-
-    width: 30%;
+.form-registro-paciente{
+    width: 37%;
     margin-left: 20px;
     background-color:rgb(238, 238, 238);
     padding: 20px;
@@ -14,25 +13,24 @@
     box-shadow: 0px 0px 10px rgb(255, 115, 29);
 }
 
-.registro-veterinario label{
+.form-registro-paciente label{
     font-size: 20px;
     margin-right: 5px;
     font-family: 'Karla', sans-serif;
 }
 
-.registro-veterinario input{
+.form-registro-paciente input{
     font-size: 20px;
-    margin-right: 10px;
+    margin-right: 20px;
     margin-top: 20px;
     border: none;
     border-bottom: 1px dotted black;
     background-color: rgb(238, 238, 238) ;
     outline: none;
-    width: 50%;
+    width: 100%;
 }
 
-.registro-veterinario h4{
-    
+.form-registro-paciente h4{
     color: rgb(255, 115, 29) ;
     font-size: 40px;
     text-shadow: 3px 2px 2px rgb(0, 0, 0);
@@ -41,7 +39,8 @@
     font-family: 'Caprasimo', cursive;
 }
 
-.btn-veterinario{
+
+.contenedor-botones .btnpaciente{
     box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.603);
     background-color: rgb(255, 115, 29) ;
     border: none;
@@ -56,9 +55,8 @@
 }
 
 
-.contenedor-tabla-veterinario{
-    margin-bottom: 30px;
-    width: 65%;
+.contenedor-tabla-paciente{
+    width: 97%;
     margin-left: 20px;
     background-color:rgb(238, 238, 238);
     margin-top: 30px;
@@ -69,14 +67,14 @@
 }
 
 
-.contenedor-tabla-veterinario th{
+.contenedor-tabla-paciente th{
     font-size: 20px;
     text-align: center;
     color: rgb(255, 98, 0);
     padding: 8px;
 }
 
-.contenedor-tabla-veterinario td{
+.contenedor-tabla-paciente td{
     border-bottom: 1px solid rgba(0, 0, 0, 0.281);
     font-size: 23px;
     text-align: center;
@@ -85,36 +83,36 @@
     padding: 15px;
 }
 
-.contenedor-tabla-veterinario .modificar{
+.contenedor-tabla-paciente .modificar{
     box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.603);
     background-color: rgb(255, 112, 29) ;
     border: none;
     padding: 5px;
     color: aliceblue;
-    font-size: 20px;
+    font-size: 15px;
     font-weight: bold;
     border-radius: 50px;
     outline: none;
 }
 
-.contenedor-tabla-veterinario .modificar:hover{
+.contenedor-tabla-paciente .modificar:hover{
     background-color: rgb(216, 89, 10);
 }
 
-.contenedor-tabla-veterinario .cancelar{
+.contenedor-tabla-paciente .cancelar{
     margin-top: 5px;
     box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.603);
     background-color: rgb(255, 29, 29) ;
     border: none;
     padding: 5px;
     color: aliceblue;
-    font-size: 20px;
+    font-size: 15px;
     font-weight: bold;
     border-radius: 50px;
     outline: none;
 }
 
-.contenedor-tabla-veterinario .cancelar:hover{
+.contenedor-tabla-paciente .cancelar:hover{
     background-color: rgb(189, 0, 0);
 }
 

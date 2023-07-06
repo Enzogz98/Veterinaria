@@ -15,12 +15,12 @@
 
 .body-login{
    
-    color: rgb(255, 255, 255);
+    color: rgb(219, 191, 173);
     display: flex;
     justify-content: center;
     align-items: center;
     height: 700px;
-    background: url('../assets/bgr.login.jpg') no-repeat center fixed;
+    background: url('../assets/fondo-login.jpg') no-repeat center fixed;
     background-size: cover;
     font-family: 'Quicksand', sans-serif;
  
@@ -38,11 +38,11 @@
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    border: 2px solid rgba(255, 255, 255, 0.486) ;
+    border: 3px solid rgba(255, 115, 0, 0.719) ;
     border-radius: 20px 110px;
     text-shadow: 1px 1px 4px black;
     backdrop-filter: blur(10px) ;
-    box-shadow: 0 4px 8px 0 rgba(253, 253, 253, 0.322), 0 6px 20px 0 rgba(255, 255, 255, 0.171);
+    box-shadow: 0 4px 8px 5px rgba(255, 115, 0, 0.719), 0 6px 20px 5px rgba(255, 115, 0, 0.719);
     animation-name: scale;
     animation-duration: 0.5s;
     animation-timing-function: ease-out;
@@ -54,26 +54,27 @@
 .contenedor-login h2{
     font-size: 3em;
     text-align: center;
+    text-shadow: 1px 1px 3px black;
+    font-weight: bold;
 }
 
 .contenedor-login button{
-    color: aliceblue;
+    color: rgb(59, 24, 3);
     background-color: transparent;
     margin-top: 10px;
     padding: 5px;
     width: 80%;
     height: 40px;
     font-size: 1em;
-    border: 1px solid rgb(255, 255, 255);
+    border: 2px solid rgba(255, 115, 0, 0.719);
     border-radius: 40px;
-    text-shadow: 2px 2px 2px black;
     outline: none;
     cursor: pointer;
     font-weight: 600;
 }
 
 .contenedor-login button:hover{
-    background-color: rgba(86, 105, 189, 0.733);
+    background-color: rgba(255, 159, 68, 0.733);
 
 }
 
@@ -81,17 +82,19 @@
     position: relative;
     margin: 30px 0;
     width: 80%;
-    border-bottom: 2px solid white;
+    border-bottom: 2px solid rgba(255, 115, 0, 0.719);
 }
 
 .contenedor-label label{
     position: absolute;
     top: 50%;
     left: 5px;
-    color: aliceblue;
+    color:rgb(219, 191, 173);
     transform: translateY(-50%);
-    font-size: 1em;
+    font-size: 1.5em;
     transition: .5s;
+    text-shadow: 1px 1px 3px black;
+    font-weight: bold;
     
 }
 
@@ -103,14 +106,16 @@ input:valid ~ label{
 
 .contenedor-label input{
 
-    color: aliceblue;
+    color: rgb(219, 191, 173);
     width: 100% ;
     height: 50px;
     background: transparent;
     border: none;
     outline: none;
-    font-size: 1em;
+    font-size: 1.5em;
     padding: 0 35px 0 5px;
+    text-shadow: 1px 1px 3px black;
+    font-weight: bold;
 
 }
 
@@ -118,7 +123,7 @@ input:valid ~ label{
 .icono {
    position: absolute;
    right: 8px;
-   color: aliceblue;
+   color:rgb(59, 24, 3);
    font-size: 1.2em;
    top: 20px;
 }
@@ -126,7 +131,7 @@ input:valid ~ label{
 .icono-password{
     position: absolute;
     right: 35px;
-   color: aliceblue;
+   color:rgb(59, 24, 3);
    font-size: 1.2em;
    top: 20px;
 }
