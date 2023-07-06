@@ -21,6 +21,10 @@ const connection = mysql.createConnection({
     });
 };
 
+
+
+
+
 const consultaTodosDatabase = (query)=>{
     return new Promise((resolve,reject)=>{
         console.log(query)

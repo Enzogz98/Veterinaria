@@ -132,6 +132,12 @@ const seter= (idP)=>{
                     </Link>
                     
                   </Nav.Link>
+
+                  <Nav.Link  >
+                    <Link to='/proveedores' className="nav-link"><p>Proveedores</p>
+                    </Link>
+                    
+                  </Nav.Link>
                     
                 </div>
 

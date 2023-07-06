@@ -1,14 +1,14 @@
 import React from 'react'
 import MainProveedores from '../components/MainProveedores'
-// // import Header from '../components/Header'
-// // import Footer from '../components/Footer'
+ import Header from '../components/Header'
+ import Footer from '../components/Footer'
 
 const Proveedores = () => {
   return (
     <>
-    {/* <Header/> */}
+    <Header/> 
       <MainProveedores/>
-      {/* <Footer/> */}
+      <Footer/> 
     </>
   )
 }

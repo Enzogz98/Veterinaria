@@ -38,7 +38,7 @@ const MainHome = () => {
 
     timeoutId = setTimeout(() => {
       
-      sucessClick(3)
+      //sucessClick(3)
     
     }, 3000);
 

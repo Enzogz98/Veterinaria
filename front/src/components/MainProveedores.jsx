@@ -2,6 +2,7 @@ import React from 'react';
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import "../css/MainProveedores.css"
 
 const MainProveedores = () => {
   const [datos, setDatos] = useState(null);
@@ -108,8 +109,8 @@ const MainProveedores = () => {
 
   return (
     <>
-      <div className='contenedor-paciente'>
-        <form action='' className=''>
+      <div className='contenedor-proveedor'>
+        <form action='' className='form-registro-proveedor'>
           <h4>Proveedores</h4>
           <label htmlFor=''>Ingrese el nombre de la Empresa</label>
           <input type='text' value= {nomEmpresa} onChange={(e) => setNomEmpresa(e.target.value)} />
@@ -129,7 +130,7 @@ const MainProveedores = () => {
               type='button'
               onClick={agregarProv}
               disabled={botones}
-              className='btnpaciente'
+              className='btnproveedor'
             >
               Agregue el nuevo Proveedor
             </button>
@@ -138,18 +139,18 @@ const MainProveedores = () => {
                 type='button'
                 onClick={editarProv}
                 disabled={!botones}
-                className='btnpaciente'
+                className='btnproveedor'
               >
                 Agregar cambios al Proveedor
               </button>
-              <button type='button' onClick={limpiar} className='btnpaciente'>
+              <button type='button' onClick={limpiar} className='btnproveedor'>
                 Cancelar
               </button>
             </div>
           </div>
         </form>
 
-        <div className=''>
+        <div className='contenedor-tabla-proveedor'>
           {datos !== null ? (
             <table>
               <thead>
