@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom'
 import axios from 'axios';
 import { enqueueSnackbar } from "notistack";
 import { useNavigate } from "react-router-dom";
+import "../css/MainPerfil.css"
 
 
 const sucessClick = () => {
@@ -91,23 +92,24 @@ const MainPerfil = () => {
 
   return (
     <>
-        <div>
-            <form onSubmit={editar}>
-                <br />
+        <div className='contenedor-perfil'>
+            <form onSubmit={editar} className='contenedor-editar-perfil'>
+              <h4>Editar Perfil</h4>
+
                 <label>Imagen:</label>
                 <input type="text" value={img} onChange={(e)=>(setImg(e.target.value))} />
-                <br />
+
                 <label>Color Menu Superior:</label>
                 <input type="number" value={color} onChange={(e)=>(setColor(e.target.value))}/>
                 <br />
                 <label>Modo Oscuro:</label>
                 <input type="number" value={oscuro} onChange={(e)=>(setOscuro(e.target.value))}/>
-                <br />
+
                 <label>Background:</label>
                 <input type="number" value={back} onChange={(e)=>(setBack(e.target.value))}/>
                 <br />
-                <button type='submit'>Guardar Cambios</button>
-                <button type='button'>Cancelar</button>
+                <button type='submit' className='boton-perfil'>Guardar Cambios</button>
+                <button type='button' className='boton-perfil'>Cancelar</button>
             </form>
         </div>
     </>
