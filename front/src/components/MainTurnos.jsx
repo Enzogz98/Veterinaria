@@ -189,8 +189,8 @@ const MainTurnos = () => {
     <label htmlFor="">Ingrese el motivo de la consulta</label>
     <input type="text" value={tipo} onChange={(e)=>setTipo(e.target.value)} />
     <br />
-    <button type="submit" onClick={agregarTurno} disabled={botones}>Agregue el nuevo turno</button>
-    <button type='submit' onClick={modificarTurno} disabled={!botones}>Agregar cambios al turno</button>
+    <button type="button" onClick={agregarTurno} disabled={botones}>Agregue el nuevo turno</button>
+    <button type='button' onClick={modificarTurno} disabled={!botones}>Agregar cambios al turno</button>
     <button type='button' onClick={limpiar}>Cancelar</button>
 
    </form>

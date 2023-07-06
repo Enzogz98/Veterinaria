@@ -80,8 +80,7 @@ const Usuario = () => {
     setPermisos(usuario.permisos);
     setBotones(true);
   };
-  const Cancelar = (e) => {
-    e.preventDefault()
+  const limpiar= () => {
     setNombre("");
     setApellido("");
     setEmail("");
@@ -96,7 +95,7 @@ const Usuario = () => {
   const agregarUsuario = async (e) => {
     try {
       e.preventDefault()
-      const response = axios.post("http://localhost:3000/usuario", {
+      const response = await axios.post("http://localhost:3000/usuario", {
         nombre,
         apellido,
         email,
@@ -109,6 +108,7 @@ const Usuario = () => {
       if (response.status === 200) {
         sucessClick(1)
         mostrar();
+        limpiar()
       }
     } catch {
       ErrorClick();
@@ -131,7 +131,7 @@ const Usuario = () => {
       if (response.status === 200) {
         sucessClick(2)
         mostrar();
-        setBotones(false);
+        limpiar()
       } else {
         ErrorClick()
       }
@@ -140,22 +140,6 @@ const Usuario = () => {
     }
   };
 
-  // const borrarUsuario = (usuario) =>{
-  //   axios.delete(`http://localhost:3000/usuario/delete/`+usuario.id).then(()=>{
-  //get usuario con un id
-  //     axios.get(`http://localhost:3000/usuario/`+usuario.id).then((response)=>{
-  //       if(response.data){
-  //         alert("el usuario no pudo ser eliminado")
-  //       } else{
-  //         alert("el usuario se eliminó correctamente")
-  //         mostrar()
-  //       }
-  //     })
-  //     .catch((error)=>{
-  //       console.error("ocurrio un error en la eliminacion", error)
-  //     })
-  //   })
-  // }
   const borrarUsuario = (usuario) => {
     axios
       .delete(`http://localhost:3000/usuario/delete/` + usuario.id)
@@ -282,15 +266,15 @@ const Usuario = () => {
 
         <br />
         <div className="contenedor-botones-usuario">
-        <button type="submit" onClick={(e)=>agregarUsuario(e)} disabled={botones} className="boton-usuario">
+        <button type="button" onClick={(e)=>agregarUsuario(e)} disabled={botones} className="boton-usuario">
           Ingrese un nuevo usuario
         </button>
 
         <div>
-        <button type="submit" onClick={(e)=>modificarUsuario(e)} disabled={!botones} className="boton-usuario">
+        <button type="button" onClick={(e)=>modificarUsuario(e)} disabled={!botones} className="boton-usuario">
           Editar
         </button>
-        <button type="submit" onClick={(e)=>Cancelar(e)} disabled={!botones} className="boton-usuario">
+        <button type="button" onClick={limpiar}  className="boton-usuario">
           Cancelar
         </button>
         </div>
