@@ -264,7 +264,7 @@ nomEmpresa varchar(50),
 telefono varchar(50),
 direccion varchar(50),
 rubro varchar(50)
-);
+)
 
 insert into proveedores (nomEmpresa, telefono, direccion, rubro)
 values("Dog Chow", "3887557455", "mate de luna 2244", "Alimentos para Mascotas");
