@@ -251,19 +251,23 @@ VALUES
     (8, 'Collar con placa de identificación', 'Collar resistente con placa grabada para identificar a tu mascota', 9.50, 50, 'https://us.123rf.com/450wm/pixelrobot/pixelrobot1907/pixelrobot190700097/127058766-collar-de-perro-rojo-con-placa-de-identificaci%C3%B3n-de-oro-aislado-en-blanco.jpg'),
     (9, 'Arena sanitaria para gatos', 'Arena absorbente para mantener la higiene de los gatos', 7.25, 40, 'https://www.patasarriba.cl/wp-content/uploads/2022/10/arena500x500.jpeg'),
     (10, 'Juguete con catnip', 'Juguete relleno de catnip para gatos, estimula su instinto de caza', 6.99, 25, 'https://http2.mlstatic.com/D_NQ_NP_633778-MLA49999542422_052022-O.webp');
-    
-    
-   
-    CREATE TABLE ventas(
-    idVenta int primary key auto_increment,
-    medioPago varchar(50),
-    precioTotal decimal(20,2)
-    );
-    CREATE TABLE detalleVenta(
-    id int primary key auto_increment,
-    idVenta int,
-    idProducto int,
-    cantidad int,
-    precio decimal(10,2)
-    );
-   
+
+
+
+
+ALTER TABLE perfil
+ADD CONSTRAINT fk_perfil_usuario
+FOREIGN KEY (id_user)
+REFERENCES usuario (id)
+ON DELETE CASCADE;
+DELIMITER //
+
+CREATE TRIGGER eliminar_perfil AFTER DELETE ON usuario
+FOR EACH ROW
+BEGIN
+    DELETE FROM perfil WHERE id_user = OLD.id;
+END //
+
+DELIMITER ;   
+
+select * from perfil;
