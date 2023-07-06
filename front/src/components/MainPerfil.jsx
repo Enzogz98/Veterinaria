@@ -109,7 +109,7 @@ const MainPerfil = () => {
                 <input type="number" value={back} onChange={(e)=>(setBack(e.target.value))}/>
                 <br />
                 <button type='submit' className='boton-perfil'>Guardar Cambios</button>
-                <button type='button' className='boton-perfil'>Cancelar</button>
+                <button type='button' onClick={()=>navigate("/home")} className='boton-perfil'>Cancelar</button>
             </form>
         </div>
     </>

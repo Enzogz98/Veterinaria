@@ -26,7 +26,7 @@ const Header = () => {
   const [id_u, setId_u] = useState(0);
   //const [datoPerfil, setPerfil] = useState();
   const navigate = useNavigate();
-  const Menus = [{to:"/perfil/",name:"Editar Perfil"},{to:"/editarUsuario",name:"Cambiar Contraseña"}];
+  const Menus = [{to:"/perfil/",name:"Editar Perfil"},{to:"/cambiopass",name:"Cambiar Contraseña"}];
   const [open, setOpen] = useState(false);
   const menuRef = useRef();
   const imgRef = useRef();
@@ -123,7 +123,7 @@ const seter= (idP)=>{
                     
                   </Nav.Link>
                   <Nav.Link  >
-                    <Link to='/Venta' className="nav-link"><p>Ventas</p>
+                    <Link to='/productos' className="nav-link"><p>Productos</p>
                     </Link>
                     
                   </Nav.Link>
@@ -155,7 +155,7 @@ const seter= (idP)=>{
                       
                       {Menus.map((menu) => (
                         <button className="btn-dropdown" onClick={() => setOpen(false)} >
-                          <Link to={menu.to+id_perfil} > <p className="btn-dropdown"> {menu.name} </p> </Link>
+                          <Link to={menu.to=="/perfil/"?menu.to+id_perfil:menu.to} > <p className="btn-dropdown"> {menu.name} </p> </Link>
                         </button>
                       ))}
                       <button onClick={logOut} className="btn-cerrar-sesion">Cerrar sesion</button>

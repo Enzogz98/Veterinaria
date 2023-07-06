@@ -6,9 +6,7 @@ import img from "../assets/nota2.png";
 import "../css/MainHome.css";
 import { enqueueSnackbar } from "notistack";
 
-//modificar la contante main home para que reciba la props que le envio el componente padre,
-//crear una funcion que llame a esa funcion y envie por parametro los datos que recupera (dato perfil)
-//
+
 
 const MainHome = () => {
   const navigate = useNavigate();
@@ -25,6 +23,36 @@ const MainHome = () => {
   const [descripcion, setDescripcion] = useState("");
   const [fecha, setFecha] = useState("");
   const [prioridad, setPrioridad] = useState("3");
+
+
+
+  const [inputValue, setInputValue] = useState('');
+
+  let timeoutId;
+
+  const inputNota = (e) => {
+    // const value = e.target.value;
+    setInputValue(e.target.value);
+
+    clearTimeout(timeoutId);
+
+    timeoutId = setTimeout(() => {
+      
+      sucessClick(3)
+    
+    }, 3000);
+
+  }
+
+  // const editNota= async ()=>{
+  //   try {
+      
+  //   } catch (error) {
+  //     console.error("Error en la consulta")
+  //   }
+
+
+  // }
 
   const sucessClick = (dato) => {
     if (dato == 1) {
@@ -43,7 +71,15 @@ const MainHome = () => {
           horizontal: "left",
         },
       });
-    } else {
+    } else if (dato == 3) {
+      enqueueSnackbar("Recibi los cambios en tu nota ! 👌", {
+        variant: "success",
+        anchorOrigin: {
+          vertical: "top",
+          horizontal: "left",
+        },
+      });
+    }else {
       enqueueSnackbar("Se ELimino la tarea ! 🗑", {
         variant: "error",
         anchorOrigin: {
@@ -87,10 +123,12 @@ const MainHome = () => {
     const perfil = async () => {
       try {
         const response = await axios.post("http://localhost:3000/perfil", {
-          id_u,
+          id_u, 
         });
         if (response.status === 200) {
           setPerfil(response.data);
+          
+
           // enviar a local storage lo datos de perfil
         } else {
           console.error("Error en la respuesta");
@@ -181,7 +219,7 @@ const MainHome = () => {
         );
 
         if (response.status === 200) {
-          sucessClick(3);
+          sucessClick(4);
           console.log(idTarea);
           setRecargar(recargar + 1);
           setTabla(0);
@@ -253,15 +291,11 @@ const MainHome = () => {
 
   return (
     <>
+    
       <div className="contenedor-mainhome1">
         {storeData.map((user) => (
           <div key={user.id}>
-            {/* <li>Id: {user.id}</li>
-          <li>Estado {user.estado} </li>
-          <li>Rol: {user.nombreRol}</li>
-          <li>Nick:{user.nick}</li>
-          <li>Email:{user.email}</li>
-          <li>Pass:{user.pass}</li> */}
+         
             <div className="contenedor-bienvenida">
               <div>
                 <h1>Bienvenido</h1>
@@ -283,11 +317,28 @@ const MainHome = () => {
                     cols="30"
                     rows="10"
                     defaultValue={datoPerfil[0].notas}
+                    onChange={(e)=>inputNota(e)}
                     className="textarea-bienvenida"
                   ></textarea>
                 </div>
               ) : (
-                <div></div>
+                <div>
+                  <div className="contenedor-textarea">
+                  <div className="nota">
+                    <img src={img} alt="" />
+                  </div>
+
+                  <textarea
+                    name=""
+                    id=""
+                    cols="30"
+                    rows="10"
+                    defaultValue={inputValue}
+                    onChange={(e)=>inputNota(e)}
+                    className="textarea-bienvenida"
+                  ></textarea>
+                </div>
+                </div>
               )}
             </div>
 
@@ -296,17 +347,6 @@ const MainHome = () => {
                 {" "}
                 {datoPerfil ? (
                   <div>
-                    <div>
-                      {/* <img className="imgPerfil" src={datoPerfil[0].img} alt="" />
-                       */}
-                      {/* <br />
-                    <ul>
-                      <li>Estilo Background: {datoPerfil[0].background}</li>
-                      <li>Estilo color: {datoPerfil[0].colorHeader}</li>
-                      <li>ligthDark: {datoPerfil[0].ligthDark}</li>
-                    </ul> */}
-                    </div>
-
                     <div className="contenedor-tareas">
                       <div className="contenedor-agregarTarea">
                         <h4>
