@@ -75,6 +75,37 @@
   animation-fill-mode: forwards;
 }
 
+.btn-dropdown{
+  border: none;
+  background-color: transparent;
+}
+
+.btn-dropdown p{
+  color: rgb(23, 89, 74);
+}
+
+.btn-cerrar-sesion{
+  border: none;
+  background-color:rgb(23, 89, 74);
+color: aliceblue;
+padding: 15px;
+width: 100%;
+border-radius: 0px 0px 20px 20px;
+}
+
+
+.btn-dropdown:hover{
+  background-color:rgb(23, 89, 74);
+  padding: 5px;
+  width: 100%;
+  }
+
+  .btn-dropdown p:hover{
+    color: aliceblue;
+    height: 10px;
+  }
+  
+
 .dropdown .li-dropdown {
   width: 100%;
   cursor: pointer;

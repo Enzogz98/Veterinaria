@@ -1,6 +1,6 @@
 .contenedor-paciente{
     display: flex;
-
+    margin-bottom: 50px;
 }
 
 .form-registro-paciente{

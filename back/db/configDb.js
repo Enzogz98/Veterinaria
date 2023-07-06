@@ -1,10 +1,12 @@
 const mysql = require("mysql");
+
 const connection = mysql.createConnection({
     host: "localhost",
     user: "root",
     password: "root",
     database: "veterinariaBD",
   });
+  
   const queryDatabase = (query, values)=>{
     return new Promise((resolve,reject)=>{
         console.log(query,values)

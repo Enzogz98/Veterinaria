@@ -154,11 +154,11 @@ const seter= (idP)=>{
                       ))}
                       
                       {Menus.map((menu) => (
-                        <button className="li-dropdown" onClick={() => setOpen(false)}>
-                          <Link to={menu.to+id_perfil}> <p>{menu.name}</p></Link>
+                        <button className="btn-dropdown" onClick={() => setOpen(false)} >
+                          <Link to={menu.to+id_perfil} > <p className="btn-dropdown"> {menu.name} </p> </Link>
                         </button>
                       ))}
-                      <button onClick={logOut}>logout</button>
+                      <button onClick={logOut} className="btn-cerrar-sesion">Cerrar sesion</button>
                     </div>
                   )}
                 </div>

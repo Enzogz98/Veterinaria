@@ -245,7 +245,6 @@ const MainTurnos = () => {
   
    </div>
   
-   <button onClick={()=>navigate('/Home')} className='boton-cerrarSesion'>Volver a Home</button>
    
    </>
   )

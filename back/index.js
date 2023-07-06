@@ -11,6 +11,7 @@ const clientes=require("./routes/clientes");
 const pacientes=require('./routes/pacientes');
 const turnos=require('./routes/turnos')
 const veterinarios=require('./routes/veterinarios');
+const productos = require("./routes/productos");
 
 
 
@@ -48,3 +49,5 @@ app.use('/', clientes)
 app.use('/',pacientes)
 
 app.use("/",veterinarios)
+
+app.use("/",productos)

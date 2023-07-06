@@ -335,8 +335,7 @@ const Usuario = () => {
 
     </div>
 
-    <button onClick={logOut} className="boton-cerrarSesion"> Cerrar sesion</button>
-      
+    
     </>
   );
 };
