@@ -18,7 +18,8 @@ function App() {
       <Route path='/usuarios' element={<Usuarios/>}/>
       <Route path='/pacientes' element={<Pacientes/>}/>
       <Route path='/turnos' element={<Turnos/>}></Route>
-      <Route path='/turnos' element={<Turnos/>}></Route>
+      <Route path='/turnos' element={<Turnos/>}></Route> 
+      <Route path='/Veterinarios' element={<Veterinarios/>}></Route> 
       <Route path='/perfil/:id' element={<Perfil/>}></Route>
       
     </Routes>
