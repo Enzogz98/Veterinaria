@@ -270,7 +270,6 @@ insert into proveedores (nomEmpresa, telefono, direccion, rubro)
 values("Dog Chow", "3887557455", "mate de luna 2244", "Alimentos para Mascotas");
 insert into proveedores (nomEmpresa, telefono, direccion, rubro)
 values("Eukan", "38144475", "Colon 2500", "Articulos varios");
-
 INSERT INTO productos (id,idProvedor, nombre, descripcion, precio, stock, url)
 VALUES
     (1,1, 'Alimento para perros', 'Alimento balanceado para perros de todas las razas', 25.99, 50, 'https://http2.mlstatic.com/D_NQ_NP_782837-MLA49211676866_022022-O.webp'),

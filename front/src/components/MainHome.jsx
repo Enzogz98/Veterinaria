@@ -6,7 +6,7 @@ import img from "../assets/nota2.png";
 import "../css/MainHome.css";
 import { enqueueSnackbar } from "notistack";
 
-//modificar la contante main home para que reciba la props que le envio el componente padre, 
+//modificar la contante main home para que reciba la props que le envio el componente padre,
 //crear una funcion que llame a esa funcion y envie por parametro los datos que recupera (dato perfil)
 //
 
@@ -26,44 +26,42 @@ const MainHome = () => {
   const [fecha, setFecha] = useState("");
   const [prioridad, setPrioridad] = useState("3");
 
-
   const sucessClick = (dato) => {
-    if(dato==1){
-        enqueueSnackbar("Perfecto se Registro la nueva tarea ! 😉", {
-            variant: "success",
-            anchorOrigin: {
-              vertical: "top",
-              horizontal: "left",
-            },
-        })
-    } else if (dato==2){
-        enqueueSnackbar("Recibi los cambios en las tareas ! 👌", {
-            variant: "success",
-            anchorOrigin: {
-              vertical: "top",
-              horizontal: "left",
-            },
-        })
+    if (dato == 1) {
+      enqueueSnackbar("Perfecto se Registro la nueva tarea ! 😉", {
+        variant: "success",
+        anchorOrigin: {
+          vertical: "top",
+          horizontal: "left",
+        },
+      });
+    } else if (dato == 2) {
+      enqueueSnackbar("Recibi los cambios en las tareas ! 👌", {
+        variant: "success",
+        anchorOrigin: {
+          vertical: "top",
+          horizontal: "left",
+        },
+      });
     } else {
-        enqueueSnackbar("Se ELimino la tarea ! 🗑", {
-            variant: "error",
-            anchorOrigin: {
-              vertical: "top",
-              horizontal: "left",
-            },
-        })
+      enqueueSnackbar("Se ELimino la tarea ! 🗑", {
+        variant: "error",
+        anchorOrigin: {
+          vertical: "top",
+          horizontal: "left",
+        },
+      });
     }
-    };
-    const ErrorClick = () => {
-        enqueueSnackbar("Algo salio mal !!! 🤖", {
-            variant: "error",
-            anchorOrigin: {
-              vertical: "top",
-              horizontal: "right",
-            },
-        })
-    }
-
+  };
+  const ErrorClick = () => {
+    enqueueSnackbar("Algo salio mal !!! 🤖", {
+      variant: "error",
+      anchorOrigin: {
+        vertical: "top",
+        horizontal: "right",
+      },
+    });
+  };
 
   useEffect(() => {
     const fetchData = async () => {
@@ -71,7 +69,7 @@ const MainHome = () => {
         if (localStorage.getItem("userData")) {
           const userData = JSON.parse(localStorage.getItem("userData"));
           setStoreData(userData);
-          console.log(userData)
+          console.log(userData);
           if (userData.length > 0) {
             setId_u(userData[0].id);
           }
@@ -121,7 +119,6 @@ const MainHome = () => {
       perfil();
       cargarTabla();
     }
-    
   }, [id_u, recargar]);
 
   useEffect(() => {
@@ -139,7 +136,7 @@ const MainHome = () => {
           prioridad,
         });
         if (response.status === 200) {
-          sucessClick(1)
+          sucessClick(1);
           setRecargar(recargar + 1);
           setTabla(0);
           console.log(tabla);
@@ -163,7 +160,7 @@ const MainHome = () => {
           prioridad,
         });
         if (response.status === 200) {
-          sucessClick(2)
+          sucessClick(2);
           setRecargar(recargar + 1);
           setTabla(0);
           offEditar();
@@ -190,7 +187,7 @@ const MainHome = () => {
           setTabla(0);
           offEditar();
         } else {
-          ErrorClick()
+          ErrorClick();
         }
       } catch (error) {
         ErrorClick();
@@ -292,8 +289,6 @@ const MainHome = () => {
               ) : (
                 <div></div>
               )}
-
-
             </div>
 
             {
@@ -302,8 +297,6 @@ const MainHome = () => {
                 {datoPerfil ? (
                   <div>
                     <div>
-
-                    
                       {/* <img className="imgPerfil" src={datoPerfil[0].img} alt="" />
                        */}
                       {/* <br />
@@ -315,13 +308,11 @@ const MainHome = () => {
                     </div>
 
                     <div className="contenedor-tareas">
-
                       <div className="contenedor-agregarTarea">
                         <h4>
                           {editar == true ? "Editar tarea" : "Nueva Tarea"}
                         </h4>
                         <form onSubmit={tareaController}>
-
                           <label htmlFor="">Tarea: </label>
                           <input
                             type="text"
@@ -343,40 +334,37 @@ const MainHome = () => {
                             onChange={(e) => setFecha(e.target.value)}
                           />
 
-                          <label htmlFor="" className="prioridad">Prioridad -
-                          
-                          <input
-                            className="radio"
-                            type="radio"
-                            name="opcion"
-                            value="3"
-                            checked={prioridad == "3"}
-                            id="opcion3"
-                            onChange={(e) => setPrioridad(e.target.value)}
-                          />
-
-                           <input
-                            className="radio"
-                            type="radio"
-                            name="opcion"
-                            value="2"
-                            id="opcion2"
-                            checked={prioridad == "2"}
-                            onChange={(e) => setPrioridad(e.target.value)}
-                          />
-
-                          <input
-                            className="radio"
-                            type="radio"
-                            name="opcion"
-                            value="1"
-                            checked={prioridad == "1"}
-                            id="opcion1"
-                            onChange={(e) => setPrioridad(e.target.value)}
-                          />
-
-                          + </label>
-                         
+                          <label htmlFor="" className="prioridad">
+                            Prioridad -
+                            <input
+                              className="radio"
+                              type="radio"
+                              name="opcion"
+                              value="3"
+                              checked={prioridad == "3"}
+                              id="opcion3"
+                              onChange={(e) => setPrioridad(e.target.value)}
+                            />
+                            <input
+                              className="radio"
+                              type="radio"
+                              name="opcion"
+                              value="2"
+                              id="opcion2"
+                              checked={prioridad == "2"}
+                              onChange={(e) => setPrioridad(e.target.value)}
+                            />
+                            <input
+                              className="radio"
+                              type="radio"
+                              name="opcion"
+                              value="1"
+                              checked={prioridad == "1"}
+                              id="opcion1"
+                              onChange={(e) => setPrioridad(e.target.value)}
+                            />
+                            +{" "}
+                          </label>
 
                           {editar == false ? (
                             <button type="submit">Agregar Tarea</button>
@@ -408,24 +396,27 @@ const MainHome = () => {
                                 <td>{elemento.descripcion}</td>
                                 <td>{elemento.fecha_inicio}</td>
                                 <td>{elemento.fecha_finalizacion}</td>
-                                <td>{(() => {
-    if (elemento.prioridad == 1) {
-
-      return <span>Prioridad Maxima</span>; 
-    } else if (elemento.prioridad == 2) {
-
-      return <span>Prioridad Media</span>; 
-    } else  {
-
-      return <span>Prioridad Baja</span>; 
-    }
-  })()}</td>
                                 <td>
-                                  <button  className="btn-editar" onClick={() => onEditar(elemento)}>
+                                  {(() => {
+                                    if (elemento.prioridad == 1) {
+                                      return <span>Prioridad Maxima</span>;
+                                    } else if (elemento.prioridad == 2) {
+                                      return <span>Prioridad Media</span>;
+                                    } else {
+                                      return <span>Prioridad Baja</span>;
+                                    }
+                                  })()}
+                                </td>
+                                <td>
+                                  <button
+                                    className="btn-editar"
+                                    onClick={() => onEditar(elemento)}
+                                  >
                                     Editar
                                   </button>
                                   <button
-                                    className="btn-eliminar" onClick={() => elimiarTarea(elemento)}
+                                    className="btn-eliminar"
+                                    onClick={() => elimiarTarea(elemento)}
                                   >
                                     Eliminar
                                   </button>
@@ -445,7 +436,7 @@ const MainHome = () => {
           </div>
         ))}
 
-        <button onClick={logOut} className="boton-cerrarSesion"> Cerrar sesion</button>
+        
       </div>
     </>
   );

@@ -2,6 +2,7 @@ import React from 'react'
 import { useNavigate } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
+import "../css/MainCambio.css"
 
 const MainCambio = () => {
 
@@ -60,14 +61,23 @@ const MainCambio = () => {
   }
   return (
     <>
+    <div className='conteiner-password'>
+    <div className='contenedor-pass'>
+      <h4>Cambio de contraseña</h4>
       <label htmlFor="">Ingrese su contraseña anterior</label>
       <input type="text" onChange={(e)=>setPassValida(e.target.value)} />
       <br />
       <label htmlFor="">Ingrese su nueva contraseña</label>
       <input type="text" onChange={(e)=>setPassNueva(e.target.value)}/>
       <br />
-      <button onClick={cambioPassword}>Confirmar cambio de contraseña</button>
-      <button>Cancelar</button>
+      <button onClick={cambioPassword} className='boton-pass'>Confirmar cambio de contraseña</button>
+      <button className='boton-pass'>Cancelar</button>
+
+    </div>
+
+    </div>
+    
+     
     </>
   )
 }
