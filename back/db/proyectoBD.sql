@@ -264,7 +264,7 @@ nomEmpresa varchar(50),
 telefono varchar(50),
 direccion varchar(50),
 rubro varchar(50)
-)
+);
 
 insert into proveedores (nomEmpresa, telefono, direccion, rubro)
 values("Dog Chow", "3887557455", "mate de luna 2244", "Alimentos para Mascotas");
@@ -287,3 +287,19 @@ ADD CONSTRAINT fk_producto_proveedores
 FOREIGN KEY (idProvedor)
 REFERENCES proveedores (id)
 ON DELETE CASCADE;
+
+
+ALTER TABLE perfil
+ADD FOREIGN KEY (id_user)
+REFERENCES usuario(id);
+
+
+
+INSERT INTO cliente (nombre, apellido, direccion, dni, telefono, cuit)
+VALUES ('Juan', 'Sotelo', 'San Martin 500', 34123090, '3814564544', '20-34123090-1');
+
+INSERT INTO paciente (nomPac, dni_duenio, especie, raza, edad, estado)
+VALUES ('Rufo', 34123090, 'Canino', 'Pitbull', '2', TRUE);
+
+
+-- intergrantes Diego Flores Aguirres, Maria victoria Abraham,Enzo Gonzalez, Nelson lobo,Alvaro Albornoz

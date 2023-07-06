@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 import "../css/MainCambio.css"
 
+
 const MainCambio = () => {
 
     const navigate = useNavigate();
@@ -40,6 +41,7 @@ const MainCambio = () => {
   };
 
   const cambioPassword= async ()=>{
+    const navigate = useNavigate();
     if(passValida===passVieja){
     try{
         const response= await axios.put("http://localhost:3000/usuario/cambio",{
@@ -71,7 +73,7 @@ const MainCambio = () => {
       <input type="text" onChange={(e)=>setPassNueva(e.target.value)}/>
       <br />
       <button onClick={cambioPassword} className='boton-pass'>Confirmar cambio de contraseña</button>
-      <button className='boton-pass'>Cancelar</button>
+      <button className='boton-pass' onClick={()=>navigate("/home")}>Cancelar</button>
 
     </div>
 
