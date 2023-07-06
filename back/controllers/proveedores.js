@@ -1,20 +1,18 @@
 const {connection}= require('../db/configDb')
 const {queryDatabase}=require('../db/configDb');
 
-const mostrarTurnos = (req,res) =>{
-
-    connection.query('SELECT * FROM turnos', (error, results)=>{
+const mostrarProveedores = (req,res) =>{
+    connection.query('SELECT * FROM proveedores', (error, results)=>{
         if(error) throw(error)
         res.json(results)
     })
-
 }
 
-const editarTurnos = async (req, res)=>{
+const editarProv = async (req, res)=>{
     try{
-        const {idPac, dniCliente,observaciones,fecha,idVet,tipo,id}=req.body
-        const query="UPDATE turnos SET idPac=?, dniCliente=?,observaciones=?,fecha=?,idVet=?,tipo=? WHERE id=?"
-        const values=[idPac, dniCliente,observaciones,fecha,idVet,tipo,id]
+        const {nomEmpresa,telefono,direccion,rubro,id}=req.body
+        const query="UPDATE proveedores SET nomEmpresa=?, telefono=?, direccion=?, rubro=? WHERE id=?"
+        const values=[nomEmpresa,telefono,direccion,rubro,id]
         const rows = await queryDatabase(query,values)
         res.status(200).json(rows)
 
@@ -26,11 +24,11 @@ const editarTurnos = async (req, res)=>{
     }
 
 }
-const agregarTurno = async(req,res)=>{
+const agregarProv = async(req,res)=>{
     try{
-        const{idPac,dniCliente,observaciones,fecha,idVet,tipo}=req.body
-        const query="INSERT into turnos (idPac, dniCliente, observaciones, fecha, idVet, tipo) VALUES(?,?,?,?,?,?)"
-        const values= [idPac,dniCliente,observaciones,fecha,idVet,tipo]
+        const{nomEmpresa,telefono,direccion,rubro}=req.body
+        const query="INSERT into proveedores (nomEmpresa, telefono, direccion, rubro) VALUES(?,?,?,?)"
+        const values= [nomEmpresa,telefono,direccion,rubro]
         const rows=await queryDatabase(query,values)
         res.status(200).json(rows)
     } catch(error){
@@ -40,9 +38,10 @@ const agregarTurno = async(req,res)=>{
         })
     }
 }
-const eliminarTurno=(req,res)=>{
+
+const eliminarProveedor=(req,res)=>{
     const id=req.params.id
-    connection.query('DELETE FROM turnos WHERE id=?', id,
+    connection.query('DELETE FROM proveedores WHERE id=?', id,
     (error,results)=>{
         if(error){
             console.log(error)
@@ -53,6 +52,4 @@ const eliminarTurno=(req,res)=>{
     })
 }
 
-
-
-module.exports={mostrarTurnos, editarTurnos, agregarTurno, eliminarTurno}
+module.exports={mostrarProveedores,editarProv,eliminarProveedor,agregarProv}

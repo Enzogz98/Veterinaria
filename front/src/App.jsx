@@ -7,6 +7,7 @@ import Turnos from './pages/Turnos'
 import Veterinarios from './pages/Veterinarios'
 import Perfil from './pages/Perfil'
 import CambioContraseña from './pages/CambioContraseña'
+import Proveedores from './pages/Proveedores'
 
 function App() {
 
@@ -23,6 +24,7 @@ function App() {
       <Route path='/Veterinarios' element={<Veterinarios/>}></Route> 
       <Route path='/perfil/:id' element={<Perfil/>}></Route>
       <Route path='/cambiopass' element={<CambioContraseña/>}/>
+      <Route path='/proveedores' element={<Proveedores/>}/>
       
     </Routes>
     </BrowserRouter>
